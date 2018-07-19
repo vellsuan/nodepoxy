@@ -1,0 +1,24 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/crowdOrder.css" />
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="wrapper positiona">
+<div class="mui-content" style="height: 100%;width: 100%;">
+	<div class="crowd-order-box">
+		<ul class="mui-table-view" id="panic-buying">
+			
+			<!--<li class="mui-table-view-cell mui-media" id="crowd-order-box">
+			</li>-->
+		</ul>
+	</div>
+
+</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/myPanicBuying.js"></script>
+{{/block}}

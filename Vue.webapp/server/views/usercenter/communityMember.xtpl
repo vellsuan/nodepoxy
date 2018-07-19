@@ -1,0 +1,36 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/communityMember.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}} 
+		<div class="mui-content" id="usercenter_communityMember">
+		    <div class="headline tcenter font22pt">群成员(<span>{{list.length}}</span>)</div>
+		    <ul class="mui-table-view mui-grid-view mui-grid-9" id="usercenter_communityMember_scroll">
+		    	
+		    	{{#each(list)}}
+		     	<li class="mui-table-view-cell mui-media">
+			        <a href="#">
+			        	{{#if(flag)}}
+			       	 	<img src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{user.userImg}}"/>
+			        	{{else}}
+			        		<img src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{ServerPath.ServerImgURL||''}}{{user.userImg}}"/>
+			        	{{/if}}
+			            <div class="mui-media-body">{{user.userName || user.nickName}}</div>
+			        </a>
+			    </li>
+		    	{{/each}}
+		    </ul>
+		    <!--<p class="more font24pt tcenter">点击查看更多成员></p>-->
+		</div>
+		
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/layout.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/communityMember.js"></script>
+{{/block}}

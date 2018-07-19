@@ -1,0 +1,146 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/authentication.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+	<!--<header class="mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left font30pt mui-icon-arrowleft"></a>
+				<h1 class="mui-title font32pt">个人认证</h1>
+			</header>-->
+	<div class="mui-content" id="usercenter_authenindex" flag="{{flag}}">
+		<div class="list-authen-box">
+			<ul class="mui-table-view">
+				<li status="{{vipInfo.user.isVerifyMember}}" class="mui-table-view-cell authenPath" isVerifyMember='{{vipInfo.user.isVerifyMember}}'>
+					<a class="mui-navigate-right Authen" data-href="{{ServerPath.PagePath||" "}}/uc/realAuthen?isAuthen={{vipInfo.user.userType}}">
+
+						<span class="mui-badge font28pt">
+							{{#if(vipInfo.user.isVerifyMember==='1')}}
+								<span class="iconfont icon-duigou"></span>
+							{{/if}}
+						<em>
+							{{#if(vipInfo.user.isVerifyMember==="1")}}
+								已认证
+							{{/if}}
+							{{#if(vipInfo.user.isVerifyMember==="2")}}
+								未认证
+							{{/if}}
+							{{#if(vipInfo.user.isVerifyMember==="3")}}
+								审核中
+							{{/if}}
+							{{#if(vipInfo.user.isVerifyMember==="4")}}
+								认证失败
+							{{/if}}
+						</em>
+						</span>
+
+						<span class="font28pt">实名认证</span>
+					</a>
+				</li>
+				<li status="{{vipInfo.user.isShopkeeper}}" class="mui-table-view-cell allser-authen" contribut="{{vipInfo&&vipInfo.user.credits}}">
+					<a class="mui-navigate-right Authen" class="mui-navigate-right Authen" data-href="{{ServerPath.PagePath||" "}}/uc/shopAuthen">
+						<span class="mui-badge font28pt">
+							{{#if(vipInfo.user.isShopkeeper==='1')}}
+								<span class="iconfont icon-duigou"></span>
+							{{/if}}
+									
+						<em>
+							{{#if(vipInfo.user.isShopkeeper==="1")}}
+								已认证
+							{{/if}}
+							{{#if(vipInfo.user.isShopkeeper==="2")}}
+								未认证
+							{{/if}}
+							{{#if(vipInfo.user.isShopkeeper==="3")}}
+								审核中
+							{{/if}}
+							{{#if(vipInfo.user.isShopkeeper==="4")}}
+								认证失败
+							{{/if}}	
+						</em>
+						</span>
+						<span class="font28pt">店主认证</span>
+					</a>
+				</li>
+				<!--判断是机构还是个人认证-->
+				{{#set(path="")}}{{/set}} 
+				{{#if(vipInfo.user.userType==="3")}}
+					{{#set(path = 'initiaiorAuthenper')}}{{/set}} 
+				{{/if}} 
+				{{#if(vipInfo.user.userType==="1")}}
+					{{#set(path = 'initiatorAuthen')}}{{/set}} 
+				{{/if}}
+				<li class="mui-table-view-cell allser-authen" status="{{vipInfo.user.isAuthor}}" contribut="{{vipInfo&&vipInfo.user.credits}}">
+					<a  class="mui-navigate-right Authen" data-href="{{ServerPath.PagePath||" "}}/uc/{{path}}">
+						<span class="mui-badge font28pt">
+							{{#if(vipInfo.user.isAuthor==='1')}}
+								<span class="iconfont icon-duigou"></span>
+							{{/if}}
+						<em>
+							{{#if(vipInfo.user.isAuthor==="1")}}
+								已认证
+							{{/if}}
+							{{#if(vipInfo.user.isAuthor==="2")}}
+								未认证
+							{{/if}}
+							{{#if(vipInfo.user.isAuthor==="3")}}
+								审核中
+							{{/if}}
+							{{#if(vipInfo.user.isAuthor==="4")}}
+								认证失败
+							{{/if}}	
+						</em>
+						</span>
+						<span class="font28pt">发起人认证</span>
+					</a>
+				</li>
+				
+				<li status="{{vipInfo.user.isAccreditedInvestor}}" class="mui-table-view-cell allser-authen" contribut="{{vipInfo&&vipInfo.user.credits}}">
+					<a class="mui-navigate-right Authen" class="mui-navigate-right Authen" data-href="{{ServerPath.PagePath||" "}}/uc/leaderAuthen?type=1">
+						<span class="mui-badge font28pt">
+							{{#if(vipInfo.user.isAccreditedInvestor==='1')}}
+								<span class="iconfont icon-duigou"></span>
+							{{/if}}
+									
+						<em>
+							{{#if(vipInfo.user.isAccreditedInvestor==="1")}}
+								已认证
+							{{/if}}
+							{{#if(vipInfo.user.isAccreditedInvestor==="2")}}
+								未认证
+							{{/if}}
+							{{#if(vipInfo.user.isAccreditedInvestor==="3")}}
+								审核中
+							{{/if}}
+							{{#if(vipInfo.user.isAccreditedInvestor==="4")}}
+								认证失败
+							{{/if}}
+						</em>
+						</span>
+						<span class="font28pt">合格投资人认证</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="mui-popup-backdrop mui-active mark-alert" style="display: none;"></div>
+	<div class="mui-popup mui-popup-in authen-alert mark-alert" style="display: none;">
+		<div class="mui-popup-inner">
+			<span class="positiona close-btn mui-icon mui-icon-closeempty cancle-btn"></span>
+			<div class="mui-popup-title font34pt">贡献值不足</div>
+			<div class="mui-popup-text font28pt">您的贡献值较低，暂不符合申请标准，请 先提高贡献值，然后再进行申请。</div>
+		</div>
+		<div class="mui-popup-buttons">
+			<span href="{{ServerPath.PagePath||" "}}/uc/purchase" class="mui-popup-button font32pt red" id="buy-btn">购买</span>
+			<span class="mui-popup-button font32pt cancle-btn" id="cancle-btn">以后再说</span>
+		</div>
+	</div>
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/authenIndex.js"></script>
+{{/block}}

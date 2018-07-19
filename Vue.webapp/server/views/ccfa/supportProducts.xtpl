@@ -1,0 +1,36 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/keepPro.css" /> 
+{{/block}}
+
+<!--项目筛选页面结构代码-->
+{{#block ("body")}}
+<div class="wrapper positiona mui-content"  id="page_ccfa_supportProduct" data-id="{{projectId}}">
+	<div class="footer-box positionf clearfix">
+		<div class="all-price-box fleft">
+			<span class="font26pt">总价：</span>
+			<span class="red font34pt">¥</span>
+			<span class="red font34pt" id="totalMoney">0.00</span>
+		</div>
+		<div class="go-pay-box fright">
+			<button type="button" class="mui-btn mui-btn-danger pay-btn">购买</button>
+		</div>
+
+	</div>
+	<div id="sliderSegmentedControl" class="keep-control mui-slider-indicator mui-segmented-control mui-segmented-control-inverted detail-tab">
+				<a class="mui-control-item mui-active" href="javascript:void(0)" typs="0">项目支持</a>
+				<a class="mui-control-item" href="javascript:void(0)" typs="1">平台支持</a>
+			</div>
+	<div>
+		<div class="list-box">
+			<ul class="mui-table-view" id="support_box">
+				
+			</ul>
+		</div>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/supportProducts.js"></script>
+{{/block}}

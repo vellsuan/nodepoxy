@@ -1,0 +1,33 @@
+{{extend ("../layout")}}
+
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/investmentList.css" />
+{{/block}}
+
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+  <div class="mui-content investmentList">
+      <div class="title clearfix title-btn">
+          <div class="fleft item active font28pt positionr" data-order="DESC" data-flag="registerTime">注册时间
+              <span class="positiona img-top"></span>
+          </div>
+          <div class="fleft item font28pt positionr" data-order="" data-flag="callNum">认购项目<span class="positiona"></span></div>
+          <div class="fleft item font28pt positionr" data-order="" data-flag="more">筛选<span class="positiona"></span></div>
+      </div>
+      <div>
+          <ul id="content-list-wrap" class="mui-table-view content-list" style="height:31rem;"></ul>
+      </div>
+  </div>
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/investmentList.js"></script>
+{{/block}}
+
+

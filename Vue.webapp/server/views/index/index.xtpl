@@ -1,0 +1,91 @@
+{{extend ("../layoutMI")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/welcome.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+{{{include ("../util/footer")}}}
+<div class="mui-content" id="page_index_index">
+	<ul class="mui-table-view mui-grid-view section sectionOne">
+		<li class="mui-table-view-cell mui-media mui-col-xs-12" id="partnership">
+			<a href="#" class="positionr">
+				<div class="positiona lable"></div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic.png" type="{{indexList&&indexList.listProject[0]&&indexList.listProject[0].imageUrl?'1':'2'}}" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listProject[0].imageUrl}}"/>
+				<div class="positiona text {{indexList && indexList.listProject[0]?'':'hide'}}">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis tleft" data-projectId="{{indexList.listProject[0].itemId}}">{{indexList.listProject[0].itemName}}</h3>
+						<p class="font26pt tleft">
+							已筹金额：￥<span>{{tools.formatCurrency(indexList.listProject[0].ext1 ||0)}}</span> 参与：
+							<span>{{indexList.listProject[0].ext2 || 0}}</span>人
+						</p>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view mui-grid-view section sectionTwo">
+		<li class="mui-table-view-cell mui-media mui-col-xs-8" id="buyCard">
+			<a href="#" class="positionr">
+				<div class="positiona lable"></div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic_1.png" type="{{indexList&&indexList.listProduct[0]&&indexList.listProduct[0].imageUrl?'1':'2'}}" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listProduct[0].imageUrl}}"/>
+				<div class="positiona text {{indexList && indexList.listProduct[0]?'':'hide'}}">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis tleft" data-pid="{{indexList.listProduct[0].itemId}}">{{indexList.listProduct[0].itemName}}</h3>
+						<p class="font24pt tleft">
+							限时抢购价：￥<span>{{tools.formatCurrency(indexList.listProduct[0].ext1 || 0)}}</span>
+						</p>
+					</div>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4" id="social">
+			<a href="#" class="positionr">
+				<div class="positiona lable"></div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic_2.png" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listsocial[0].imageUrl}}"/>
+				<div class="positiona text {{indexList && indexList.listsocial[0]?'':'hide'}}">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis tleft">{{indexList.listsocial[0].itemName}}</h3>
+						<p class="font24pt tleft">
+							社群人数：<span>{{indexList.listsocial[0].ext1 || 0}}</span>人
+						</p>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view mui-grid-view section sectionTwo sectionThr">
+		<li class="mui-table-view-cell mui-media mui-col-xs-6" id="onlooker">
+			<a href="#" class="positionr">
+				<div class="positiona lable"></div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic_3.png" type="{{indexList&&indexList.listnews[0]&&indexList.listnews[0].imageUrl?'1':'2'}}" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listnews[0].imageUrl}}"/>
+				<div class="positiona text {{indexList && indexList.listnews[0]?'':'hide'}}">
+					<div class="positiona font24pt">
+						<h3 class="mui-ellipsis-2 tleft" data-articleId="{{indexList.listnews[0].itemId}}">{{indexList.listnews[0].itemName}}</h3>
+					</div>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-6" id="participate">
+			<a href="#" class="positionr">
+				<div class="positiona lable"></div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic_3.png" type="{{indexList&&indexList.listroadShow[0]&&indexList.listroadShow[0].imageUrl?'1':'2'}}" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listroadShow[0].imageUrl}}"/>
+				<div class="positiona text {{indexList && indexList.listroadShow[0]?'':'hide'}}">
+					<div class="positiona font24pt">
+						<h3 class="mui-ellipsis-2 tleft" data-showId="{{indexList.listroadShow[0].itemId}}">{{indexList.listroadShow[0].itemName}}</h3>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+{{/block}}
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/layout.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/index.js"></script>
+{{/block}}

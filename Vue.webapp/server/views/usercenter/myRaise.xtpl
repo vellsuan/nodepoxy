@@ -1,0 +1,21 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/myRaise.css" /> {{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="wrapper positiona">
+
+	<div class="mui-content">
+		<div class="raise-box clearfix">
+			<ul class="mui-table-view" id="myRaiseList">
+
+			</ul>
+		</div>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/myRaise.js"></script>
+{{/block}}

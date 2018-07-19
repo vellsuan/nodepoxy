@@ -1,0 +1,36 @@
+{{extend ("../layout")}}
+
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/keepPro.css" />
+{{/block}}
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="wrapper positiona mui-content"  data-id="{{projectId}}" id="page_ccfa_subscrip">
+	<div class="footer-box positionf clearfix">
+		<div class="all-price-box fleft">
+			<span class="font26pt">总价：</span>
+			<span class="red font34pt">¥</span>
+			<span class="red font34pt" id="totalMoney">0.00</span>
+		</div>
+		<div class="go-pay-box fright">
+			<button type="button" class="mui-btn mui-btn-danger pay-btn">购买</button>
+		</div>
+
+	</div>
+	<div class="">
+	    <div class="mui-control-content mui-active" id="item1">
+	        <div class="list-box">
+	            <ul class="mui-table-view" id="subscripBox">
+
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+</div>
+{{/block}}
+<!--js业务代码开发-->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/subscripProduct.js"></script>
+{{/block}}

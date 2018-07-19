@@ -1,0 +1,404 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/realAuthen.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" />
+<link href="{{ServerPath.StaticPath||''}}/styles/mui.picker.css" rel="stylesheet" />
+<link href="{{ServerPath.StaticPath||''}}/styles/mui.poppicker.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/mui.picker.min.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+
+<!--默认信息展现或隐藏样式-->
+{{#set(show="mui-navigate-right")}}{{/set}}
+{{#set(hide="")}}{{/set}} 
+{{#set(imghide="hide")}}{{/set}} 
+{{#set(j='hide')}}{{/set}} 
+{{#set(msg="")}}{{/set}}
+{{#set(SZ="hide")}}{{/set}}
+{{#set(SZall="")}}{{/set}}
+{{#set(SZimg="")}}{{/set}}
+{{#set(SZallimg="ImgPr")}}{{/set}}
+{{#set(failHide="")}}{{/set}}
+{{#set(szMgs="")}}{{/set}}
+{{#set(certificates="1")}}{{/set}}
+
+{{#set(toggleCertificates="check-certificates")}}{{/set}}
+
+<!--是否是三证合一判断-->
+{{#if(vipInfo.userInformation.orgPic)}} 
+{{#set(SZ="")}}{{/set}} 
+{{#set(SZall="hide")}}{{/set}}
+{{/if}}
+
+<!--认证成功样式展现或者隐藏-->
+{{#if(vipInfo.user.isVerifyMember==="1" || vipInfo.user.isVerifyMember==="3")}} 
+{{#set(show = '')}}{{/set}}
+{{#set(read = 'readonly')}}{{/set}}
+{{#set(hide="hide")}}{{/set}}
+{{#set(imghide="")}}{{/set}} 
+{{#set(msg="未填写")}}{{/set}} 
+{{#set(toggleCertificates="")}}{{/set}}
+{{#set(failHide="hide")}}{{/set}}
+{{/if}}
+
+<!--用户头像判断默认是http开头如果不是需要拼接服务器地址-->
+{{#set(userImg=vipInfo.user.userImg)}}{{/set}}
+{{#if(flag==="1")}}
+{{#set(userImg=ServerPath.ServerImgURL+vipInfo.user.userImg)}}{{/set}}
+{{/if}}
+
+<!--认证失败展示之前上传的图片-->
+{{#set(upMsg="上传")}}{{/set}}
+{{#if(vipInfo.user.isVerifyMember==="4")}} 
+	{{#set(imghide="")}}{{/set}}
+	{{#set(upMsg="")}}{{/set}}
+	{{#set(failHide="hide")}}{{/set}}
+{{/if}}
+
+<!--认证失败并且是三证合一-->
+{{#if(vipInfo.user.isVerifyMember==="4"&&vipInfo.userInformation.orgPic.length)}} 
+	{{#set(szMgs="三证合一")}}{{/set}}
+	{{#set(certificates="2")}}{{/set}}
+	{{#set(SZimg="ImgPr")}}{{/set}}
+	{{#set(SZallimg="")}}{{/set}}
+{{/if}}
+
+<!--<div class="wrapper positiona">-->
+	<div class="real-authen-footer positionf {{hide}}">
+		<button data-src="{{ServerPath.PagePath||" "}}/uc/authenIndex" id="submitBtn" type="button" class="mui-btn mui-btn-danger font30pt">提交申请</button>
+	</div>
+	<div class="mui-content" id="usercenter_realAuthen">
+		<div class="real-authen authen-class-box">
+			<ul class="mui-table-view authen-class">
+				<li class="mui-table-view-cell positionr">
+					<a class="{{show}}">
+						{{#if(vipInfo.user.isVerifyMember==="2")}}
+							<span value="2" id="authenShow" class="mui-badge font26pt {{failHide}}">个人认证</span>
+						{{/if}}
+						
+						{{#if(vipInfo.user.userType==="1")}} 
+						{{#set(p='hide')}}{{/set}} 
+						{{#set(j='show')}}{{/set}}
+						<span value="1" id="authenShow" class="mui-badge font26pt">机构认证</span>
+						{{/if}}
+						{{#if(vipInfo.user.userType==="3")}}
+						<span value="2" id="authenShow" class="mui-badge font26pt">个人认证</span> 
+						{{#set(p='show')}}{{/set}}
+						{{#set(j='hide')}}{{/set}}
+						{{/if}}
+						<span class="lable-dot positiona"></span>
+						<span class="lable-name font28pt">认证类型</span>
+					</a>
+					<button id='showUserPicker' class="authen-class-btn mui-btn mui-btn-block positiona {{hide}}" type='button'>选择认证类型</button>
+				</li>
+			</ul>
+		</div>
+
+		<div class="real-authen-box">
+			<!--机构认证-->
+			<div class="real-authen {{j}}">
+				<ul class="mui-table-view authen-class" id="mechAuthen">
+					{{#if(vipInfo.user.isVerifyMember==="4")}}
+						<li class="mui-table-view-cell positionr fail-reason">
+								<span class="mui-badge font26pt ellipsis">{{vipInfo.userInformation.oneReason || ''}}</span> 
+								<span class="lable-name font28pt">失败原因：</span>
+						</li>
+					{{/if}}
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} title="机构名称" check="required" class="positiona font26pt tright companyName" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.companyName}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan"></span>
+							<span class="lable-name font28pt">机构名称</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt">{{time || '请选择'}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">成立时间</span>
+						</a>
+						<input title="成立时间" check="required" class="foundTime" type="hidden" name="" id="" value="{{time}}" />
+						<button id='demo2' data-options='{"type":"date","beginYear":1970,"endYear":2200}' class="slect btn btn-time mui-btn mui-btn-block {{hide}}">选择日期</button>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt">{{vipInfo.userInformation.belongIndustryName || '请选择'}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">所在行业</span>
+						</a>
+						<input title="所在行业" check="required" class="belongIndustry" type="hidden" name="" id="" value="{{vipInfo.userInformation.belongIndustry}}" />
+						<button id='industry' class="slect industry-btn authen-class-btn mui-btn mui-btn-block positiona {{hide}}" type='button'>选择行业</button>
+						<select name="" class="industry-box positiona hide">
+							{{#each(list)}}
+							<option sortCode="{{sortCode}}" industryName="{{industryName}}" industryId="{{industryId}}" value="{{industryName}}"></option>
+							{{/each}}
+						</select>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} title="联系人" check="required" class="positiona font26pt tright contactName" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.contactName}}" />
+							<!--<span class="mui-badge font26pt">请选择</span>-->
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">联系人</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} title="联系人职位" check="required" class="positiona font26pt tright duty" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.duty}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan"></span>
+							<span class="lable-name font28pt">联系人职位</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr half">
+						<a class="{{show}}">
+							<input {{read}} title="联系电话" check="mobile" class="positiona font26pt tright contactPhone" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.contactPhone}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">联系电话</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr half province">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt">{{vipInfo.user.district || '省 市 区'}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">所在城市</span>
+						</a>
+						<input title="所在城市" check="required" districtCode="{{vipInfo.user.districtCode}}" class="district" type="hidden" name="" id="" value="{{vipInfo.user.district}}" />
+						<button id='' class="slect mui-btn mui-btn-block check-area {{hide}}" type='button'>省市区选择</button>
+					</li>			
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} class="positiona font26pt tright address" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.user.address}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">详细地址</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="">
+							<!--<span class="mui-badge font26pt {{hide}}">上传</span>-->
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">头像</span>
+						</a>
+						<input class="imgup positiona {{hide}}" type="file" name="" id="head" value="" />
+						<span id="headImg" class="imgId hide"></span>
+						<img title="头像" class="ImgPr positiona headImg" data-attr="{{userImg || ''}}" src="{{userImg}}" />
+					</li>
+					<li certificates="{{certificates}}" class="mui-table-view-cell positionr {{toggleCertificates}}">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt">{{szMgs || '非三证合一'}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">证件照片</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr half all-certificates {{SZ}}">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt {{hide}}">{{upMsg}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">三证合一</span>
+						</a>
+						<span id="threeImg" class="imgId hide"></span>
+						<input class="imgup positiona {{hide}}" type="file" name="" id="threeCard" value="" />
+						<img title="三证合一" class="positiona {{imghide}} {{SZ}} {{SZimg}} orgPic" data-attr="{{vipInfo.userInformation.orgPic || ''}}" src="{{ServerPath.ServerImgURL||''}}{{vipInfo.userInformation.orgPic}}" />
+					</li>
+					<li class="mui-table-view-cell positionr half only-certificates {{SZall}}">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt {{hide}}">{{upMsg}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">营业执照照片</span>
+						</a>
+						<input class="imgup positiona {{hide}}" type="file" name="" id="business" value="" />
+						<span id="businessImg" class="imgId hide"></span>
+						<img title="营业执照照片" class="positiona businessImg {{imghide}} {{SZallimg}} {{SZall}}" data-attr="{{vipInfo.userInformation.businessImg || ''}}" src="{{ServerPath.ServerImgURL||''}}{{vipInfo.userInformation.businessImg}}" />
+					</li>
+					<li class="mui-table-view-cell positionr half only-certificates {{SZall}}">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt {{hide}}">{{upMsg}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">组织机构代码证</span>
+						</a>
+						<input class="imgup positiona {{hide}}" type="file" name="" id="mech" value="" />
+						<span id="mechImg" class="imgId hide"></span>
+						<img title="组织机构代码证" class="positiona organizationImg {{imghide}} {{SZallimg}} {{SZall}}" id="" data-attr="{{vipInfo.userInformation.organizationImg || ''}}" src="{{ServerPath.ServerImgURL||''}}{{vipInfo.userInformation.organizationImg}}" />
+					</li>
+					<li class="mui-table-view-cell positionr only-certificates {{SZall}}">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt {{hide}}">{{upMsg}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">税务登记证照片</span>
+						</a>
+						<input class="imgup positiona {{hide}}" type="file" name="" id="tax" value="" />
+						<span id="taxImg" class="imgId hide"></span>
+						<img title="税务登记证照片" class="positiona taxImg {{imghide}} {{SZallimg}} {{SZall}}" id="" data-attr='{{vipInfo.userInformation.taxImg}}' src="{{ServerPath.ServerImgURL||''}}{{vipInfo.userInformation.taxImg}}" />
+					</li>
+				</ul>
+			</div>
+			<!--个人认证-->
+			<div class="real-authen {{p}}">
+				<ul class="mui-table-view authen-class" id="ownInfo">
+					{{#if(vipInfo.user.isVerifyMember==="4")}}
+						<li class="mui-table-view-cell positionr fail-reason">
+								<span class="mui-badge font26pt">{{vipInfo.userInformation.oneReason}}</span> 
+								<span class="lable-name font28pt ellipsis">失败原因：</span>
+						</li>
+					{{/if}}
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input title="姓名" check="required" {{read}} class="positiona font26pt tright userName" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.user.userName}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan"></span>
+							<span class="lable-name font28pt">姓名</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							{{#set(sex="请选择")}}{{/set}}
+							{{#if(vipInfo.user.sex==="1")}}
+								{{#set(sex="男")}}{{/set}} 
+							{{/if}} 
+							{{#if(vipInfo.user.sex==="2")}}
+								{{#set(sex="女")}}{{/set}} 
+							{{/if}}
+							<span class="mui-badge font26pt" id="sexShow">{{sex}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">性别</span>
+						</a>
+						<input title="性别" check="required" class="userSex" type="hidden" name="" id="" value="{{vipInfo.user.sex}}" />
+						<button id='sex' class="slect sex-class-btn mui-btn mui-btn-block positiona {{hide}}" type='button'>选择性别</button>
+					</li>
+					<li class="mui-table-view-cell positionr">
+							<span class="mui-badge font26pt">{{vipInfo.user.phone}}</span>
+							<input title="手机号码" {{read}} check="mobile" class="positiona font26pt tright phone" placeholder="请输入" type="hidden" name="" id="" value="{{vipInfo.user.phone || msg}}" />
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">手机号码</span>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<!--<a class="{{show}}">-->
+							<span class="mui-badge font26pt">身份证</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">证件类型</span>
+						<!--</a>-->
+						<input type="hidden" name="" id="" value="1" />
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} title="证件号码" check="required idcard" class="positiona font26pt tright idcardNumber" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.idcardNumber}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan"></span>
+							<span class="lable-name font28pt">证件号码</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr half province">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt">{{vipInfo.user.district ||'省 市 区'}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">所在城市</span>
+							<button id='' class="slect mui-btn mui-btn-block check-area {{hide}}" type='button'>省市区选择</button>
+						</a>
+						<input title="所在城市" check="required" class="district" districtCode="{{vipInfo.user.districtCode}}" type="hidden" name="" id="" value="{{vipInfo.user.district}}" />
+					</li>
+					
+					
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} class="positiona font26pt tright address" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.user.address ||msg}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">详细地址</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} class="positiona font26pt tright wechat" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.wechat|| msg}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">微信</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} check="email" class="positiona font26pt tright mailbox" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.user.email||msg}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">邮箱</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} class="positiona font26pt tright familyIncome" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.familyIncome || msg}}" />
+							<!--<span class="mui-badge font26pt">请输入</span> -->
+							<span class="lable-dot positiona iconfont icon-quan hide"></span>
+							<span class="lable-name font28pt">家庭收入</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt">{{vipInfo.userInformation.belongIndustryName||'请选择'}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">所在行业</span>
+						</a>
+						<input {{read}} title="所在行业" check="required" class="belongIndustry" type="hidden" name="" id="" value="{{vipInfo.userInformation.belongIndustry}}" />
+						<button id='' class="slect industry-btn authen-class-btn mui-btn mui-btn-block positiona {{hide}}" type='button'>选择行业</button>
+					</li>
+					<li class="mui-table-view-cell positionr">
+						<a class="{{show}}">
+							<input {{read}} title="工作职位" check="required" class="positiona font26pt tright duty" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.duty}}" />
+							<!--<span class="mui-badge font26pt">请输入</span>-->
+							<span class="lable-dot positiona iconfont icon-quan"></span>
+							<span class="lable-name font28pt">工作职位</span>
+						</a>
+					</li>
+
+					<li class="mui-table-view-cell positionr">
+						<a class="">
+							<!--<span class="mui-badge font26pt {{hide}}">上传</span>-->
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">头像</span>
+						</a>
+						<input class="positiona imgup {{hide}}" type="file" name="" id="ownhead" value="" />
+						<span id="ownheadImg" class="imgId hide"></span>
+						<img title="头像" class="positiona ImgPr headImg" data-attr="{{userImg}}" src="{{userImg}}" />
+					</li>
+
+					<li class="mui-table-view-cell positionr half">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt {{hide}}">{{upMsg}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">身份证正面照片</span>
+						</a>
+						<input class="positiona imgup {{hide}}" type="file" name="" id="idCardz" value="" />
+						<span id="idCardzimg" class="imgId hide"></span>
+						<img title="身份证正面照片" class="positiona ImgPr idcardUper {{imghide}}" data-attr="{{vipInfo.userInformation.idcardUper || ''}}" src="{{ServerPath.ServerImgURL||''}}{{vipInfo.userInformation.idcardUper}}" />
+					</li>
+					<li class="mui-table-view-cell positionr half">
+						<a class="{{show}}">
+							<span class="mui-badge font26pt {{hide}}">{{upMsg}}</span>
+							<span class="lable-dot positiona icon-quan iconfont"></span>
+							<span class="lable-name font28pt">身份证反面照片</span>
+						</a>
+						<input class="positiona imgup {{hide}}" type="file" name="" id="idCardf" value="" />
+						<span id="idCardfimg" class="imgId hide"></span>
+						<img title="身份证反面照片" class="positiona ImgPr idcardUnder {{imghide}}" data-attr="{{vipInfo.userInformation.idcardUnder || ''}}" src="{{ServerPath.ServerImgURL||''}}{{vipInfo.userInformation.idcardUnder}}" />
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!--</div>-->
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/realAuthen.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/mui.picker.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/mui.poppicker.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/mui.picker.min.js"></script>
+<!--<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/city.data.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+{{/block}}

@@ -1,0 +1,25 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectContribution.css" />
+{{/block}}
+<!--本页面结构代码-->
+{{#block ("body")}}
+	<div class="mui-content">
+		<div class="list-box">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell font28pt">最小投资金额 <span class="mui-badge font28pt">¥{{tools.formatCurrency(entity.minInvest)}}</span></li>-->
+				<li class="mui-table-view-cell font28pt">项目方出资金额<span class="mui-badge font28pt">¥{{tools.formatCurrency(entity.projectInvestAmount)}}</span></li>
+				<li class="mui-table-view-cell font28pt">项目方出资所占比例<span class="mui-badge font28pt">{{entity.projectInvestPercent}}%</span></li>
+				<li class="mui-table-view-cell font28pt">投资人出资比例<span class="mui-badge font28pt">{{entity.inverstorInvestPercent}}%</span></li>
+				<li class="mui-table-view-cell font28pt">项目方收益所占比例<span class="mui-badge font28pt">{{entity.projectIncomePercent}}%</span></li>
+				<li class="mui-table-view-cell font28pt">投资人收益比例<span class="mui-badge font28pt">{{entity.inverstorIncomePercent}}%</span></li>
+			</ul>
+
+		</div>
+	</div>
+{{/block}}
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/publicLink.js"></script>
+{{/block}}

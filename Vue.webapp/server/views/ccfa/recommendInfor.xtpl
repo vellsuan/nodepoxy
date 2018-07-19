@@ -1,0 +1,46 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectInfo.css" />
+{{/block}}
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content" id="page_ccfa_recommendInfor" projectId="{{projectId}}">
+	<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted detail-tab">
+		<a class="mui-control-item font30pt mui-active" href="javascript:void(0)">
+			项目新闻
+		</a>
+		<a class="mui-control-item font30pt" href="javascript:void(0)">
+			项目动态
+		</a>
+		<a class="mui-control-item  font30pt" href="javascript:void(0)">
+			项目路演
+		</a>
+		<a class="mui-control-item font30pt" href="javascript:void(0)">
+			项目直播
+		</a>
+	</div>
+	<div class="mui-content-padded">
+		<div style="height:28rem;" id="item1mobile" class="mui-control-content mui-active">
+			<!--项目新闻盒子-->
+		</div>
+		<div id="item2mobile" class="mui-control-content">
+			<!--项目动态盒子-->
+		</div>
+		<div id="item3mobile" class="mui-control-content ">
+			<!--项目路演盒子-->
+		</div>
+		<div id="item4mobile" class="mui-control-content">
+			<!--项目直播盒子-->
+		</div>
+	</div>
+	<div class="video-box">
+		<div class='preloader-indicator-modal'><span class='preloader preloader-white'></span></div>
+	</div>
+</div>
+{{/block}}
+<!--js业务代码开发-->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/recommendInfor.js"></script>
+{{/block}}

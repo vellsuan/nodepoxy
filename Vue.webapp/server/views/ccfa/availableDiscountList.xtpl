@@ -1,0 +1,59 @@
+{{extend ("../layout")}}
+
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/discount.css" />
+{{/block}}
+
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<div class="mui-content discount">
+    {{#if(availableDiscountList.length)}}
+    <div class="discount-list">
+        {{#each(availableDiscountList)}}
+        <div class="discount-item positionr" data-discountUseProId="{{availableDiscountList.spId}}" data-discountId="{{availableDiscountList.yhqid}}" data-discount="{{(availableDiscountList.dyje || 0) / 100}}">
+            <span class="positiona discount-img"></span>
+            <span class="positiona discount-img"></span>
+            <div class="fleft discount-money positionr">
+                <span class="font32pt positiona">¥</span>
+                <span class="positiona">{{tools.formatCurrency((availableDiscountList.dyje || 0) / 100) || "0.00"}}</span>
+            </div>
+            <div class="fleft discount-paragraph">
+                <p class="ellipsis font24pt">适用范围：
+                    <span class="font24pt">{{availableDiscountList.proName || "-"}}</span>
+                </p>
+                <p class="ellipsis font24pt">有效期限：
+                    <span class="font24pt">{{tools.formatTime(availableDiscountList.sxsj,8)}}</span>至<span class="font24pt">{{tools.formatTime(availableDiscountList.sxsj,8)}}</span>
+                </p>
+                <p class="ellipsis font24pt discount-btns">
+                    <span class="font24pt">点击使用</span>
+                </p>
+            </div>
+            <div class="fleft discount-right positionr">
+                <!--<span class="positiona"></span>-->
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="nocoupon">
+        <div></div>
+        <p class="tcenter">没有可使用的代金券</p>
+    </div>
+    {{/if}}
+</div>
+
+
+   
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/availableDiscountList.js"></script>
+{{/block}}
+
+

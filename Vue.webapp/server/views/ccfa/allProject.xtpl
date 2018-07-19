@@ -1,0 +1,24 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectList.css" />
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content project-list" id="page_ccfa_projects">
+
+	<div class="title clearfix title-btn">
+		<div class="fleft item active font28pt positionr" typs="numm">热度<span class="positiona img-top"></span></div>
+		<div class="fleft item font28pt positionr" typs="leftDate">时间<span class="positiona img-bottom"></span></div>
+		<div class="fleft item font28pt positionr" typs="totalCollect">金额<span class="positiona img-bottom"></span></div>
+		<div class="fleft item font28pt positionr"><a href="javascript:void(0);">筛选</a><span class="positiona"></span></div>
+	</div>
+	<ul class="mui-table-view mui-grid-view" id="list_box">
+	</ul>
+</div>
+{{/block}} 
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/allProject.js"></script>
+{{/block}}

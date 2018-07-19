@@ -1,0 +1,148 @@
+{{extend ("../layout")}}
+
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/submitOrder.css" />
+{{/block}}
+
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+  <div class="mui-content" id="page_ccfa_subOrder">
+      <div class="user-address positionr clearfix" data-addressId="{{hostShippingAddress.id}}">
+          <!--地址右面-->
+          <div class="user-address-right fright positionr">
+              <span class="go-address positiona mui-icon mui-icon-arrowright"></span>
+          </div>
+
+          <!--地址左面-->
+          <div class="user-address-left clearfix">
+              <span class="address-position fleft icon-weizhi iconfont"></span>
+              {{#if(hostShippingAddress.id)}}
+              <span class="user-address-large font28pt">{{hostShippingAddress.name || "-"}}</span>
+              <span class="user-address-phone font26pt">{{hostShippingAddress.mobile || hostShippingAddress.phone || "-"}}</span>
+              <p class="address-user-detail font24pt">{{hostShippingAddress.areas + hostShippingAddress.address || "-"}}</p>
+              {{else}}
+              <span class="user-address-large font28pt">新增地址</span>
+              <p class="address-user-detail font24pt">请添加您的地址信息</p>
+              {{/if}}
+          </div>
+      </div>
+
+      <div class="product-list-box" data-ids="{{projectIds || ''}}" data-projectNums="{{projectNums || ''}}" data-projectShopSns="{{projectShopSns || ''}}"  data-shareUserId="{{shopkeeperInfo.shareUserId || ''}}">
+          <ul class="mui-table-view">
+              {{#each(projectItemArr)}}<!--认购-->
+	              <li class="mui-table-view-cell mui-media">
+	                  <a href="javascript:;">
+	                      <img class="mui-media-object mui-pull-left" src="{{ServerPath.StaticPath}}/images/default_bruno.png" data-src="{{ServerPath.ServerImgURL + projectProducts.smallImgUrl}}">
+	                      <div class="mui-media-body positionr">
+	                          <h3 class="font28pt list-title">{{projectProducts.productName || "-"}}</h3>
+	                          <div class='mui-ellipsis font24pt list-text'>{{{projectProducts.proInfo || "-"}}}</div>
+	                          <div class="media-body-bottom font32pt positiona">
+	                              <span class="font32pt">¥</span><span class="font32pt">{{tools.formatCurrency(projectProducts.needsMoney || 0) || "0.00"}}</span>
+	                              <span class="font24pt">x</span><span class="font24pt">{{num || "0"}}</span>
+	                          </div>
+	                      </div>
+	                  </a>
+	              </li>
+              {{/each}}
+          </ul>
+      </div>
+
+      <div class="money-info">
+          <ul class="mui-table-view">
+              <li class="mui-table-view-cell all-num">
+                  <span class="mui-badge">
+                          <em class="font24pt">小计：</em>
+                          <em class="font32pt">¥</em>
+                          <em class="font32pt totalPrice" data-totalPrice="{{totalPrice || '0'}}">{{tools.formatCurrency(totalPrice || 0) || "0.00"}}</em>
+                      </span>
+                  <span class="font24pt">共<em>{{total || "0"}}</em>件商品</span>
+              </li>
+              <!-- {{#if(showDiscount)}}
+              <li class="mui-table-view-cell" data-id="{{useDiscountInfo.id}}">
+                  <a class="mui-navigate-right" href="{{ServerPath.PagePath||''}}/ccfa/availableDiscountList">
+                      {{#if(useDiscountInfo.discount === "0")}}
+                      <span class="mui-badge font28pt no-can-use">请选择</span>
+                      {{else}}
+                      <span class="mui-badge font28pt discount" data-discount="{{useDiscountInfo.discount || 0}}" data-spId="{{useDiscountInfo.spId || 0}}" data-yhqid="{{useDiscountInfo.yhqid || 0}}">{{tools.formatCurrency(useDiscountInfo.discount || 0)}}</span>
+                      {{/if}}
+                      <span class="font28pt">代金券</span>
+                  </a>
+              </li>
+              {{/if}} -->
+              
+              {{#if(rengou_userInfo.userAccInfo.consumeCredits)}}
+		              <li class="mui-table-view-cell bean">
+		                  <span class="font28pt">
+		                          <em class="font28pt">可用盈豆</em>
+		                          <em class="font24pt">{{rengou_userInfo.userAccInfo.consumeCredits||0}}</em>
+		                          <em class="font24pt">(共有<em class="font24pt">{{rengou_userInfo.userAccInfo.consumeCredits||0}}盈豆</em>)</em>
+		                  </span>
+		                  <div class="mui-switch switch-beans-btn" nums="{{userInputContentInfo.useIntegral}}">
+		                      <div class="mui-switch-handle"></div>
+		                  </div>
+		              </li>
+              {{else}}
+		              <!--<li class="mui-table-view-cell">
+		                  <a class="mui-navigate-right">
+		                      <span class="mui-badge font28pt no-can-use">无可用</span>
+		                      <span class="font28pt">可用盈豆</span>
+		                  </a>
+		              </li>-->
+                  <li class="mui-table-view-cell">
+		                <span class="mui-badge font28pt no-can-use">无可用</span>
+		                <span class="font28pt">可用盈豆</span>
+	                </li>
+              {{/if}}
+
+              <li class="mui-table-view-cell all-num switch-beans-num" style="display:none">
+                  <span class="mui-badge">
+                          <em class="font24pt">可抵用</em>
+                          <em class="font24pt use-beans-num-price">0.00</em>
+                      </span>
+                  <span class="font24pt">使用：<input class="font24pt" type="number" data-min="0" data-max="{{rengou_userInfo.userAccInfo.consumeCredits || '0'}}" id="use-beans-num" value="{{userInputContentInfo.useIntegral || 0}}"  data-scoreRate="{{scoreRate}}"/></span>
+              </li>
+          </ul>
+      </div>
+
+      <div class="message-box">
+          <h6 class="message-title">
+              <span class="icon-liuyan iconfont font28pt"></span>
+              <span class="font28pt">留言</span>
+          </h6>
+          <div class="textarea font24pt" contenteditable="true">
+            {{userInputContentInfo.userMessageBoard}}
+          </div>
+      </div>
+
+      <div class="law-box">
+          <div class="mui-input-row mui-checkbox mui-left">
+              <label class="font26pt">阅读并同意<span class="font26pt user-agreement">《支持者协议》</span></label>
+              <input name="checkbox" value="Item 1" type="checkbox" checked class="agreement"/>
+          </div>
+          <p class="font22pt contribution-content" style="padding-right:0.5rem;">
+              *该笔订单交易成功后<span class="font22pt blue">“贡献值”</span>增加<span class="font22pt red contriPoint">{{contributionValue || "0"}}分</span>，首次购买<span class="font22pt blue">“人脉值”</span>增加<span class="font22pt red">{{tools.numToChCapital(peopleValue)}}</span>
+          </p>
+      </div>
+  </div>
+  <div class="footer-box positionf clearfix">
+      <div class="all-price-box fleft">
+          <span class="font26pt">总价：</span>
+          <span class="red font34pt">¥</span>
+          <span class="red font34pt last-total-price" data-lastTotalPrice="{{lastTotalPrice || '0'}}">{{tools.formatCurrency(lastTotalPrice || 0) || "0.00"}}</span>
+      </div>
+      <div class="go-pay-box fright">
+          <button type="button" class="mui-btn mui-btn-danger pay-btn" data-balance="{{rengou_userInfo.user.account && rengou_userInfo.user.account.cashAmount
+ || '0'}}">去支付</button>
+      </div>
+  </div>
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/submitOrder.js"></script>
+{{/block}}

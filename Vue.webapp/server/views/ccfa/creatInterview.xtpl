@@ -1,0 +1,61 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/interview.css" /> {{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content interview" id="interview">
+	<div class="interview-list" style="padding-bottom:1.5rem">
+		<div class="message-item positionr">
+			<span class="positiona"></span>
+			<span class="font28pt">请选择约谈话题</span>
+		</div>
+		<div id="" class="message-list clearfix">
+			{{#each(list)}}
+			<div class="fleft message-list-div positionr">
+				<div class="message-list-add positiona font24pt">
+					<span class="ellipsis message-btns" data-id="{{id || 1}}">
+						{{label||"标题11"}}
+					</span>
+				</div>
+			</div>
+			{{/each}}
+		</div>
+		<div class="message-item positionr">
+			<span class="positiona"></span>
+			<span class="font28pt">评论</span>
+		</div>
+		<div class="message-textarea positionr">
+			<textarea name="" rows="" cols="" class="font24pt"></textarea>
+			<p class="positiona">
+				还可以输入<span class="word">150</span>字
+			</p>
+		</div>
+		<div class="img-list clearfix hide">
+			<div class="img-item fleft">
+				<img src="images/detailBanner.jpg" alt="" />
+			</div>
+			<div class="img-item fleft"><img src="images/detailBanner.jpg" alt="" /></div>
+			<div class="img-item add-btns fleft positionr">
+				<span class="positiona"></span>
+				<span class="positiona"></span>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="fotter positionf clearfix">
+	<div class="btns fleft">
+		<a href="javascript:;" class="mui-action-back">
+			<div class="button cancle font30pt">取消</div>
+		</a>
+	</div>
+	<div class="btns fleft">
+		<div class="button submit font30pt">提交</div>
+	</div>
+</div>
+
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/creatInterview.js"></script>
+{{/block}}

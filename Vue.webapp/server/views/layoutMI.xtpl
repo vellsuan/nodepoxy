@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>必盈 | {{title||'首页'}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	    <meta name="screen-orientation" content="portrait"/>
+	    <meta name="x5-orientation"content="portrait">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=yes">
+	    <!-- UC强制竖屏 -->
+		<meta name="screen-orientation" content="portrait">
+		<!-- QQ强制竖屏 -->
+		<meta name="x5-orientation" content="portrait">
+		<!-- UC强制全屏 -->
+		<meta name="full-screen" content="yes">
+		<!-- QQ强制全屏 -->
+		<meta name="x5-fullscreen" content="true">
+		<!-- UC应用模式 -->
+		<meta name="browsermode" content="application">
+		<!-- QQ应用模式 -->
+		<meta name="x5-page-mode" content="app">
+		<!-- windows phone 点击无高光 -->
+		<meta name="msapplication-tap-highlight" content="no">
+		<!-- 适应移动端 END -->
+	    
+		<!--标准mui.css-->
+	    <link rel="stylesheet" href="{{ServerPath.StaticPath||""}}/styles/mui.min.css">
+	    <!--App自定义的css-->
+	    <link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||""}}/styles/base.css" />
+
+	    <link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" />
+	    <link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/bindPhone.css" />
+        {{{block ("styles")}}}
+       
+	</head>
+	<body class="{{isWechat}}">
+		{{{block ("body")}}}
+		<div class="clearfix" id="page_utils_dialog"></div>
+	</body>
+</html>
+<script type="text/javascript" src="{{ServerPath.StaticPath||""}}/scripts/vendor/mui.min.js" ></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||""}}/scripts/vendor/zepto.min.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||""}}/scripts/vendor/lib-bundle.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||""}}/scripts/vendor/fastclick.js"></script>
+
+{{{block ("scripts")}}}
+
+<script type="text/javascript">
+
+$(function(){
+	FastClick.attach(document.body);
+});
+
+window.onpageshow = function(event){
+if (event.persisted) {
+window.location.reload();
+}
+}
+</script>
+
+

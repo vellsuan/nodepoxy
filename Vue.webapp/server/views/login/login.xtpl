@@ -1,0 +1,75 @@
+{{extend ("../layout")}}
+
+{{#block ("styles")}}
+<!--index head block-->
+<link type="text/css" href="../styles/login.css" rev="stylesheet" rel="stylesheet"  />
+<link type="text/css" href="../styles/slide.css" rev="stylesheet" rel="stylesheet"  />
+{{/block}}
+
+{{#block ("body")}}
+<!--index body block-->
+	<!-- 主要内容 -->
+	<div class="main positionR">
+		<div class="banner banner_cont">
+		     <div class="container">
+					<div id="slides">
+							{{#each(list.adverList)}}
+								<img src="../images/banner_02.jpg" data-src="{{root.IMG_URL+imgSrc}}">
+						    {{/each}}
+						    
+						    {{#if(!list.adverList)}}
+						         <img src="../images/banner_02.jpg" tip="没有数据！">
+						    {{/if}}
+				    </div>
+			 </div>
+		
+		</div>
+		<div class="main_con positionA">
+			<div class="main_in positionA">
+				<div class="title">
+					<span>登录 Login</span>
+				</div>
+				<form  id="login_loginFrom"  method="post" action ="" >
+				<ul class="con">
+					<li class="mgs">
+						<em></em>
+						<input type="text" check="required" title="用户名" name="username" class="text username"  placeholder="账号/手机号/邮箱"/>
+					</li>
+					<li class="mgs">
+						<em></em>
+						<input type="password" check="required|reg_password" title="密码"  name="password" class="text password"  placeholder="密码"/>
+					</li>
+					<li class="clearfix">
+						<input class="fleft imageCode" name ="imageCode"  title="图文验证码" check="required"  type="text">
+						<div class="fleft"><img src="data:image/gif;base64,{{image}}"/> </div>
+					</li>
+					<li>
+						<input  id="login_loginBtn"  type="button" class="btn" value="登录"/>
+					</li>
+				</ul>
+				</form>
+				<div class="cooperate clearfix">
+					<div class="fleft">
+						<p>使用合作网站账号登录</p>
+						<ul class="clearfix">
+							<li class="fleft"><a href="https://openauth.alipay.com/oauth2/appToAppAuth.htm?app_id=2017020805563021&redirect_uri=http://reserve.libreresorts.com/login/thirdLogin"></a></li>
+							<li class="fleft"><a href=""></a></li>
+							<li class="fleft"><a href=""></a></li>
+						</ul>
+					</div>
+					<div class="fright">
+						<a href="javascript:;" id="forgetPassword">忘记密码？</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{{/block}}
+
+
+{{#block ("scripts")}}
+<!--index scripts block-->
+<script src="{{ServerPath.StaticPath||''}}/assets/scripts/login.js"></script>
+{{/block}}
+
+

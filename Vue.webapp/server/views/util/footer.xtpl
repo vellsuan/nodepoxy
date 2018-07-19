@@ -1,0 +1,76 @@
+		<nav class="mui-bar mui-bar-tab hide">
+			<a class="mui-tab-item {{index_active}}" href="/ccfa/index">
+				<span class="mui-icon icon-shouye iconfont"></span>
+				<span class="mui-tab-label font24pt">首页</span>
+			</a>
+			<a class="mui-tab-item {{ccfa_active}}"  href="/ccfa/ccfa">
+				<span class="mui-icon icon-xiaozhu iconfont"></span>
+				<span class="mui-tab-label font24pt">合伙</span>
+			</a>
+			<a class="mui-tab-item positionr {{uc_active}}" href="/ccfa/uc">
+				<span class="personal positiona"></span>
+				<div class="personal-in-box positiona">
+					<span class="personal-in tcenter positiona icon-gerenzhongxin iconfont"></span>
+				</div>
+				<span class="mui-tab-label font24pt hide">个人中心</span
+			</a>
+			<a class="mui-tab-item {{index_shop_active}}" href="/shop/index">
+				<span class="mui-icon icon-gouwuche iconfont"></span>
+				<span class="mui-tab-label font24pt">买卡</span>
+			</a>
+			<a class="mui-tab-item {{other_active}}" href="#other">
+				<span class="mui-icon iconfont icon-qitagongnengicon"></span>
+				<span class="mui-tab-label font24pt">其他</span>
+			</a>
+		</nav>
+		
+		<div class="nav-footer positionf clearfix">
+			<div class="fleft {{index_active}} tap-item">
+				<a class="" href="/ccfa/index">
+					<span class="spanIcon mauto"></span>
+					<span class="spanText font24pt">首页</span>
+				</a>				
+			</div>
+			<div class="fleft {{ccfa_active}} tap-item">
+				<a class=""  href="/ccfa/ccfa">
+					<span class="spanIcon mauto"></span>
+					<span class="spanText font24pt">合伙</span>
+				</a>
+			</div>
+			<div class="fleft {{uc_active}} tap-item">
+				<a class="positionr " href="/ccfa/uc">
+					<span class="personal positiona"></span>
+					<div class="personal-in-box positiona">
+						<span class="personal-in tcenter positiona"></span>
+					</div>
+					<span class="font24pt spanText" style="margin-top:0;">个人中心</span>
+				</a>
+			</div>
+			<div class="fleft {{index_shop_active}} tap-item">
+				<a class="" href="/shop/index">
+					<span class="spanIcon mauto"></span>
+					<span class="spanText font24pt">买卡</span>
+				</a>
+			</div>
+			<div class="fleft {{other_active}} tap-item">
+				<a class="" href="#other">
+					<span class="spanIcon mauto"></span>
+					<span class="spanText font24pt">其他</span>
+				</a>
+			</div>
+		</div>
+		
+		<div id="other" class="mui-popover mui-bar-popover" style="display: none;">
+			<div class="mui-popover-arrow mui-bottom" style="left:50px"></div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+						<span class="pics icon-views"><img src="{{ServerPath.StaticPath||''}}/images/views.png"></span><a href="{{ServerPath.PagePath||" "}}/uc/onLooker">围观</a>
+				</li>
+				<li class="mui-table-view-cell">
+						<span class="pics icon-played"><img src="{{ServerPath.StaticPath||''}}/images/played.png"></span><a href="{{ServerPath.PagePath||" "}}/uc/participate">参与</a>
+				</li>
+				<li class="mui-table-view-cell">
+						<span class="pics icon-social"><img src="{{ServerPath.StaticPath||''}}/images/social.png"></span><a href="{{ServerPath.PagePath||" "}}/uc/community">社交</a>
+				</li>
+			</ul>
+		</div>

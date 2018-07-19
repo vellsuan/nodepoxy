@@ -1,0 +1,30 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/newsDetail.css" />
+{{/block}}
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content">
+    <div class="clearfix newsDetail">
+        <div class="newsTitle cearfix">
+            <div class="title clearfix positionr font36pt">
+                {{entity.title}}
+            </div>
+            <div class="time">
+                <span class="font24pt fleft">{{tools.formatTime(entity.editTime,9)}}</span>
+                <span class="font24pt fleft">浏览：{{entity.bnum}}次</span>
+                <span class="font24pt fright mui-ellipsis come-from tright">来源：{{entity.comefrom}}</span>
+            </div>
+        </div>
+        <div class="clearfix newsCon">
+            {{{entity.content}}}
+        </div>
+    </div>
+</div>
+{{/block}}
+
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/publicLink.js"></script>
+{{/block}}

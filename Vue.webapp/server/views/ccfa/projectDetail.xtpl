@@ -1,0 +1,97 @@
+{{extend ("../layout")}}
+
+
+<!--本页面样式代码-->
+{{#block ("styles")}}
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectDetails.css" />
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+	<div class="mui-content projectDetails positiona" style="width: 100%;" id="page_ccfa_projectDetail" projectId="{{projectId}}" proStatus="{{objDetail.projectType}}" ownerid="{{objDetail.ownerid}}">
+		<!--<div id="slider" class="mui-slider body-slider">-->
+			<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted positionf">
+				<a class="mui-control-item font30pt mui-active" href="javascript:void(0)">
+					介绍
+				</a>
+				<a class="mui-control-item font30pt" href="javascript:void(0)">
+					动态
+				</a>
+				<a class="mui-control-item font30pt" href="javascript:void(0)">
+					评论
+				</a>
+				<a class="mui-control-item font30pt" href="javascript:void(0)">
+					交易
+				</a>
+			</div>
+			<div class="content-ctr-cwo"></div>
+			<div class="mui-slider-group">
+				<div style="" id="item1mobile" class="mui-slider-item mui-control-content mui-active introduce1">
+					<!--tab容器-->
+				</div>
+				<div id="item2mobile" class="mui-slider-item mui-control-content mescroll">
+					<!--tab容器-->
+				</div>
+				<div id="item3mobile" class="mui-slider-item mui-control-content evaluate3">
+					<!--tab容器-->
+				</div>
+				
+				<div id="item4mobile" class="mui-slider-item mui-control-content transaction"> 
+					<div class="tab-support">
+						<span class="active font28pt positionr">支持<em class="positiona"></em></span>
+						<span class="font28pt">认购</span>
+					</div>
+					<div  style="height:27rem;" class="transaction-list clearfix" id="trade_list">
+					</div>
+				</div>
+			</div>
+		<!--</div>-->
+		<div class="interview-project positionf" data-name="{{objDetail.projectName}}" data-proid="{{objDetail.id}}" data-fchatId="{{objDetail.fchatId}}" data-chatid="{{objDetail.chatId}}" data-ownerid="{{objDetail.ownerid}}">
+			<!-- <em class="positiona">
+				<span class="font20pt" id="appointmentNum">{{objDetail.appointmentNum}}</span>
+			</em> -->
+			<span class="positiona iconfont icon-xinxi"></span>
+			<span class="font20pt positiona">约谈</span>
+		</div>
+		<div class="follow-project positionf">
+			<!-- <em class="positiona">
+				<span class="font20pt" id="careNum">{{objDetail.careNum}}</span>
+			</em> -->
+			<span class="positiona iconfont icon-xin-"></span>
+			<span class="font20pt positiona atten"></span>
+		</div>
+		<div class="fotter positionf">
+			<div class="fotter-item fotter-item1 fleft ">
+				<span class="iconfont icon-pinglun"></span><span class="font24pt">评论</span>
+			</div>
+			<div class="fotter-item fotter-item2 fleft">
+				<span class="iconfont icon-fenxiang1" data-attr="{{ServerPath.ServerImgURL+objDetail.projectMinPic}}"></span><span class="font24pt">分享</span>
+			</div>
+			<div class="fotter-item fotter-item3 fright">
+				<span class="font30pt"><a  style="color:#fff;" isallow="{{flag}}" buyStatus="{{followObj.status}}" href="javascript:void(0)">申请领投</a></span>
+			</div>
+			<div class="fotter-item fotter-item4 fright">
+				<span class="font30pt"><a style="color:#fff;" href="javascript:void(0)">去认购</a></span>
+			</div>
+		</div>
+		<div class="mui-popup-backdrop mui-active mark-alert" style="display: none;"></div>
+		<div class="mui-popup mui-popup-in authen-alert mark-alert" style="display: none;">
+			<div class="mui-popup-inner">
+				<span class="positiona close-btn mui-icon mui-icon-closeempty cancle-btn"></span>
+				<div class="mui-popup-title font34pt">贡献值不足</div>
+				<div class="mui-popup-text font28pt">您的贡献值较低，暂不符合申请标准，请 先提高贡献值，然后再进行申请。</div>
+			</div>
+			<div class="mui-popup-buttons">
+				<span herf="{{ServerPath.PagePath||" "}}/uc/purchase" class="mui-popup-button font32pt red" id="buy-btn">购买</span>
+				<span class="mui-popup-button font32pt cancle-btn" id="cancle-btn">以后再说</span>
+			</div>
+		</div>
+	</div>
+	<div id="project-share-detail" class="positionf hide">
+		<img class="share-img" src="{{ServerPath.StaticPath||''}}/images/share_1.png"/>
+	</div>
+{{/block}}
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/projectDetail.js"></script>
+{{/block}}

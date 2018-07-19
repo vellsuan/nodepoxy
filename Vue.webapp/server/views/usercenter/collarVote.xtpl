@@ -1,0 +1,32 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/collarVote.css" /> {{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="wrapper positiona">
+	<div class="mui-content" style="height: 100%;width: 100%;">
+		<div class="crowd-order-box">
+			<ul class="mui-table-view" id="collarVote">
+		    			
+		    	</ul>
+		</div>
+	</div>
+	<div class="mui-popup-backdrop mui-active" style="display: none;"></div>
+	<div class="mui-popup mui-popup-in authen-alert" style="display: none;">
+		<div class="mui-popup-inner">
+			<span class="positiona close-btn close-btn-collar mui-icon mui-icon-closeempty"></span>
+			<div class="mui-popup-title font34pt">领投审核结果</div>
+			<div class="mui-popup-text font28pt">您的个人资料不够详细，请补充材料，然后重新提交。</div>
+		</div>
+		<div class="mui-popup-buttons">
+			<span class="mui-popup-button font32pt red reapplay-btn-collar">重新申请</span>
+			<span class="mui-popup-button font32pt close-btn-collar">以后再说</span>
+		</div>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/collarVote.js"></script>
+{{/block}}

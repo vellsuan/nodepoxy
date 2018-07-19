@@ -1,0 +1,69 @@
+{{extend ("./layout")}}
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/index.css" />
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" />
+{{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+  
+	{{{include ("./util/footer")}}}
+	<div>
+		<iframe id="app_content_iframe_id" src="{{ServerPath.PagePath||''}}/index"   border=0 frameborder=0 framespacing=0  marginheight=0  marginwidth=0  noResize  width="100%"></iframe>
+	</div>
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+	<script>
+			$("#app_content_iframe_id").height($(window).height());
+			var urlParams = (function() {
+				var search = window.location.search;
+				if (!search) {
+					return {};
+				}
+				search += window.location.hash;
+				(search.indexOf("?") > -1) && (search = search.substring(1));
+				if (search == "") {
+					return {};
+				}
+				search = "{\"" + decodeURIComponent(search.replace(/[&#?]/g, "\",\"").replace(/=/g, "\":\"").replace(/,[^,:]*,/g, ",").replace(/\",[^,:]*$/, "")) + "\"}";
+				return search && JSON.parse(search) || {};
+			})();
+			
+			function getIndexStr(idx){
+				var data = {"0":"index","1":"ccfa","2":"uc","3":"shop","4":"other"};
+				return data[idx||"0"];
+			}
+			
+			function getIndex(idx){
+				var data = {"index":"0","ccfa":"1","uc":"2","shop":"3","other":"4"};
+				return data[idx||"0"];
+			}
+				
+				
+			mui.ready(function(){
+				mui('.mui-bar-tab').on('tap', 'a', function(e) {
+					var title = $(this).find(".mui-tab-label").text();
+					$(".mui-bar-nav .mui-title").html(title);
+					$("title").html(title);
+					$(this).addClass("mui-active").siblings().removeClass("mui-active");
+					var targetTab = this.getAttribute('href');
+					$("#app_content_iframe_id").attr("src",targetTab);
+					var m = getIndexStr($(this).index()+"")||"index";
+					history.pushState(null, "", "{{ServerPath.PagePath||''}}/app" + "?m="+m);
+					return;
+				});
+				
+				if(urlParams["m"]){
+					var m = getIndex(urlParams["m"])||"0";
+					history.pushState(null, "", "{{ServerPath.PagePath||''}}/app"  + "?m="+m);
+					mui.trigger(mui('.mui-bar-tab a')[m],'tap');
+				}
+			})
+	</script>
+{{/block}}
+
+

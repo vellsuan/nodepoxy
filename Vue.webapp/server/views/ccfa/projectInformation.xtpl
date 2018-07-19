@@ -1,0 +1,27 @@
+{{extend ("../layout")}}
+
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectInfo.css" />
+{{/block}}
+
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+	<div class="mui-content projectInformation" id="page_ccfa_projectInformation">
+		<div class="mui-content-padded">
+			<div id="item1mobile" class="mui-control-content mui-active">
+			</div>
+		</div>
+	</div>
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/projectInformation.js"></script>
+{{/block}}
+
+

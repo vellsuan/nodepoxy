@@ -1,0 +1,18 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/myFocus.css" /> {{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="wrapper positiona">
+	<div class="mui-content project-list">
+		<ul class="mui-table-view mui-grid-view" id="myFocus">
+
+		</ul>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/myFocus.js"></script>
+{{/block}}

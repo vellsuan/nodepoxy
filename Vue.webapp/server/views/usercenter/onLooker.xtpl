@@ -1,0 +1,50 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/onLooker.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+
+<div class="mui-content" id="usercenter_onlooker">
+	<div class="clearfix lookerbox">
+		<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted detail-tab">
+			<a type="1" class="mui-control-item mui-active font30pt" href="#item1mobile">
+				项目新闻
+			</a>
+			<a type="2" class="mui-control-item font30pt" href="#item2mobile">
+				行业新闻
+			</a>
+			<a type="3" class="mui-control-item font30pt" href="#item3mobile">
+				平台新闻
+			</a>
+		</div>
+		<div class="mui-content-padded">
+			<div id="item1mobile" class="mui-control-content mui-active">
+				<ul class="mui-table-view" id="objNews">
+
+				</ul>
+			</div>
+			<div id="item2mobile" class="mui-control-content">
+				<ul class="mui-table-view" id="lineNews">
+
+				</ul>
+			</div>
+			<div id="item3mobile" class="mui-control-content">
+				<ul class="mui-table-view" id="platformNews">
+
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/onLooker.js"></script>
+{{/block}}

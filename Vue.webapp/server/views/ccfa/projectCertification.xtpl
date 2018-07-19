@@ -1,0 +1,61 @@
+{{extend ("../layout")}}
+
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectCertification.css" /> 
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content projectCertification">
+	<ul class="mui-table-view">
+		{{#if(userInfo.userType!=="1")}}
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right unauthorized">
+					<span class="mui-badge mui-badge-danger font28pt">已认证</span>
+					<span class="projects font28pt">身份证</span>
+				</a>
+			</li>
+		{{else}}
+			<li class="mui-table-view-cell">
+				<a class="mui-navigate-right">
+					<span class="mui-badge mui-badge-warning">已认证</span>
+					<span class="projects font28pt">三证合一</span>
+				</a>
+			</li>
+		{{/if}}
+	<!--
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right authenticated">
+				<span class="mui-badge mui-badge-purple">已认证</span>
+				<span class="projects font28pt">营业执照</span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right">
+				<span class="mui-badge mui-badge-warning">已认证</span>
+				<span class="projects font28pt">组织机构代码证</span>
+			</a>
+		</li>
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right">
+				<span class="mui-badge mui-badge-warning">已认证</span>
+				<span class="projects font28pt">税务登记证</span>
+			</a>
+		</li>
+		
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right">
+				<span class="mui-badge mui-badge-warning">已认证</span>
+				<span class="projects font28pt">法人身份证</span>
+			</a>
+		</li>-->
+	</ul>
+</div>
+{{/block}}
+
+<!--js业务代码开发-->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/ccfa.js"></script>
+{{/block}}

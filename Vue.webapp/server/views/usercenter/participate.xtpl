@@ -1,0 +1,78 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/takePart.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> 
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/video.css" /> 
+{{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<div class="mui-content" id="participate-img">
+	<div class="video-box">
+		<div class='preloader-indicator-modal'><span class='preloader preloader-white'></span></div>
+	</div>
+	<div class="banner">
+		{{#set(leng=banner.length-1)}}{{/set}}
+		<div id="slider" class="mui-slider">
+			<div class="mui-slider-group mui-slider-loop">
+				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img style="height:8rem" src="{{ServerPath.StaticPath||''}}/images/pic_1.png" data-src="{{(ServerPath.ServerImgURL||'')+banner[leng].imgSrc}}">
+					</a>
+				</div>
+				<!-- 图片 -->
+				{{#each(banner)}}
+				<div class="mui-slider-item">
+					<a href="#">
+						<img style="height:8rem" src="{{ServerPath.StaticPath||''}}/images/pic_1.png" data-src="{{(ServerPath.ServerImgURL||'')+imgSrc}}">
+					</a>
+				</div>
+				{{/each}}
+				<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+				<div class="mui-slider-item mui-slider-item-duplicate">
+					<a href="#">
+						<img style="height:8rem" src="{{ServerPath.StaticPath||''}}/images/pic_1.png" data-src="{{(ServerPath.ServerImgURL||'')+banner[0].imgSrc}}">
+					</a>
+				</div>
+			</div>
+			<div class="mui-slider-indicator hide">
+				{{#each(banner)}}
+					<div class="mui-indicator {{xindex===0?'mui-active':''}}"></div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	<div class="clearfix take-part">
+		<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted detail-tab">
+			<a type="1" class="mui-control-item mui-active font30pt" href="#item1mobile">
+				路演
+			</a>
+			<a type="2" class="mui-control-item font30pt" href="#item2mobile">
+				直播
+			</a>
+		</div>
+		<div class="mui-content-padded">
+			<div id="item1mobile" class="mui-control-content mui-active">
+				<ul class="mui-table-view luyan-list">
+					{{#if(!roadList.length)}} 
+						<div class="mescroll-empty">
+							<p class="empty-tip">暂无相关数据~~~</p>
+						</div>
+					{{/if}} 
+			</ul>
+		</div>
+		<div id="item2mobile" class="mui-control-content">
+
+		</div>
+	</div>
+</div>
+</div>
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/participate.js"></script>
+{{/block}}

@@ -1,0 +1,150 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/discountList.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<header class="mui-bar mui-bar-nav discount-head">
+	<a class="mui-icon mui-icon-arrowleft mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title font32pt">优惠券</h1>
+</header>
+<div class="mui-content discount">
+	<div id="slider" class="mui-slider">
+		<div id="sliderSegmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+			<a class="mui-control-item font30pt mui-active" href="#item1mobile">
+				未使用<span>	({{data.wsyNum || "0"}})</span>
+			</a>
+			<a class="mui-control-item font30pt" href="#item2mobile">
+				已使用<span>	({{data.yhyNum || "0"}})</span>
+			</a>
+			<a class="mui-control-item font30pt" href="#item3mobile">
+				已过期<span>	({{data.ysxNum || "0"}})</span>
+			</a>
+		</div>
+		<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+		<div class="mui-slider-group">
+			<div id="item1mobile" class="mui-slider-item mui-control-content mui-active not-used">
+				<div class="discount-list">
+					{{#each(data.list1)}}
+					<div class="discount-item positionr">
+						<span class="positiona discount-img"></span>
+						<span class="positiona discount-img"></span>
+						<div class="fleft discount-money positionr">
+							<span class="font32pt positiona">¥</span>
+							<span class="positiona">	{{dyje/100}}</span>
+						</div>
+						<div class="fleft discount-paragraph">
+							<p class="ellipsis font24pt">适用范围：
+								{{#if(tzsp==="0")}}
+								<span class="font24pt">不限</span>
+								{{/if}}
+								{{#if(tzsp==="1")}}
+								<span class="font24pt">{{proDiscribe}}</span>
+								{{/if}}
+								{{#if(tzsp==="2")}}
+								<span class="font24pt">{{proName}}</span>
+								{{/if}}
+								
+							</p>
+							<p class="ellipsis font24pt">有效期限：
+								<span class="font24pt formtime">{{sxsj}}</span>至<span class="font24pt formtime">{{gqsj}}</span>
+							</p>
+							<p class="ellipsis font24pt discount-btns">
+								<span class="font24pt fright">点击使用</span>
+								<span>{{yhqmc}}</span>
+							</p>
+						</div>
+						<div class="fleft discount-right positionr">
+							<!--<span class="positiona"></span>-->
+						</div>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+			<div id="item2mobile" class="mui-slider-item mui-control-content already-used">
+				<div class="discount-list">
+					{{#each(data.list2)}}
+					<div class="discount-item positionr">
+						<span class="positiona discount-img"></span>
+						<span class="positiona discount-img"></span>
+						<div class="fleft discount-money positionr">
+							<span class="font32pt positiona">¥</span>
+							<span class="positiona">{{dyje/100}}</span>
+						</div>
+						<div class="fleft discount-paragraph">
+							<p class="ellipsis font24pt">适用范围：
+								{{#if(tzsp==="0")}}
+								<span class="font24pt">不限</span>
+								{{/if}}
+								{{#if(tzsp==="1")}}
+								<span class="font24pt">{{proDiscribe}}</span>
+								{{/if}}
+								{{#if(tzsp==="2")}}
+								<span class="font24pt">{{proName}}</span>
+								{{/if}}
+							</p>
+							<p class="ellipsis font24pt">有效期限：
+								<span class="font24pt formtime">{{sxsj}}</span>至<span class="font24pt formtime">{{gqsj}}</span>
+							</p>
+							<p class="ellipsis font24pt discount-btns">
+								<span class="font24pt fright">点击使用</span>
+								<span>{{yhqmc}}</span>
+							</p>
+						</div>
+						<div class="fleft discount-right positionr">
+							<!--<span class="positiona"></span>-->
+						</div>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+			<div id="item3mobile" class="mui-slider-item mui-control-content expired">
+				<div class="discount-list">
+					{{#each(data.list2)}}
+					<div class="discount-item positionr">
+						<span class="positiona discount-img"></span>
+						<span class="positiona discount-img"></span>
+						<div class="fleft discount-money positionr">
+							<span class="font32pt positiona">¥</span>
+							<span class="positiona">{{dyje/100}}</span>
+						</div>
+						<div class="fleft discount-paragraph">
+							<p class="ellipsis font24pt">适用范围：
+								{{#if(tzsp==="0")}}
+								<span class="font24pt">不限</span>
+								{{/if}}
+								{{#if(tzsp==="1")}}
+								<span class="font24pt">{{proDiscribe}}</span>
+								{{/if}}
+								{{#if(tzsp==="2")}}
+								<span class="font24pt">{{proName}}</span>
+								{{/if}}
+							</p>
+							<p class="ellipsis font24pt">有效期限：
+								<span class="font24pt formtime">{{sxsj}}</span>至<span class="font24pt formtime">{{gqsj}}</span>
+							</p>
+							<p class="ellipsis font24pt discount-btns">
+								<span class="font24pt fright">点击使用</span>
+								<span>{{yhqmc}}</span>
+							</p>
+						</div>
+						<div class="fleft discount-right positionr">
+							<!--<span class="positiona"></span>-->
+						</div>
+					</div>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/discountList.js"></script>
+{{/block}}

@@ -1,0 +1,19 @@
+
+{{extend ("./layout")}}
+
+{{#block ("styles")}}
+<!--index head block-->
+<link type="text/css" href="../styles/error.css" rev="stylesheet" rel="stylesheet"  />
+{{/block}}
+
+{{#block ("body")}}
+<!--index body block-->
+	<div class="errorPage">
+		<div class="errorPic">{{err}}</div>
+		<h2 class="tcenter">哎呀，出错啦！</h2>
+		<ul class="pageBack">
+			<li class="fleft">刷新</li>
+			<li class="fleft">返回</li>
+		</ul>
+	</div>
+{{/block}}

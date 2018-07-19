@@ -1,0 +1,64 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/roadShow.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<header class="mui-bar mui-bar-nav investmentList-head">
+	<a class="mui-action-back mui-icon mui-icon-arrowleft mui-icon-left-nav mui-pull-left"></a>
+	<h1 class="mui-title">路演</h1>
+</header>
+<div class="road-footer positionf">
+	<button type="button" showid="{{showid}}" class="mui-btn mui-btn-danger font30pt">我要报名</button>
+</div>
+
+<div class="mui-content" id="usercenter_roadshow">
+	<div class="banner">
+		<img src="{{ServerPath.StaticPath||''}}/images/pic_1.png" data-src="{{ServerPath.ServerImgURL||''}}{{banner[0].imgSrc}}" />
+	</div>
+	<div class="clearfix show-info">
+		<div class="title mui-ellipsis font30pt">{{data.title}}</div>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell positionr">
+				<span class="positiona iconfont iconfont icon-rili" style="font-size:14px;"></span>
+				<a class="font26pt">
+					{{data.startTime}}－{{data.endTime}}
+				</a>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<span class="positiona iconfont iconfont icon-weizhi"></span>
+				<a class="font26pt">
+					{{data.address}}
+				</a>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<span class="positiona iconfont iconfont icon-gerenxinxi "></span>
+				<a class="font26pt">
+					已报名 <span>{{data.applyNum}}</span>人 ／ 限额 <span>{{data.maxNum}}</span>人
+				</a>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<span class="positiona iconfont iconfont icon-diqiu" style="font-size:14px;"></span>
+				<a class="font26pt">
+					主办方／{{data.organizer}}
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="show-detail clearfix">
+		<div class="title mui-ellipsis font30pt positionr">活动详情</div>
+		<div class="clearfix con">
+			{{{data.content}}}
+		</div>
+	</div>
+</div>
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/roadShow.js"></script>
+{{/block}}

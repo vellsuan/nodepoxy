@@ -1,0 +1,342 @@
+{{extend ("../layout")}}
+
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/index.css" />
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" />
+{{/block}}
+
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+		{{{include ("../util/footer")}}}
+		
+		<div class="mui-content">
+			<!--轮播图-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop slider-img">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="/images/banner.jpg">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="/images/banner.jpg">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="/images/banner.jpg">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="/images/banner.jpg">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="/images/banner.jpg">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon">
+		            	<img src="/images/sitenav.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">所有项目</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon">
+		            	<img src="/images/sitenav.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">投资人</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon">
+		            	<img src="/images/sitenav.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">项目资讯</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="#">
+						<span class="mui-icon">
+		            	<img src="/images/sitenav.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">项目动态</div>
+					</a>
+				</li>
+			</ul>
+			<div class="message clearfix">
+				<div class="fleft micon"></div>
+				<div class="fleft title font26pt">必赢消息：</div>
+				<div class="fleft mescon clearfix positionr">
+					<ul class="clearfix positiona">
+						<li class="fleft font26pt">海南三亚绿地·中央公园众筹成功！</li>
+						<li class="fleft font26pt">海南三亚绿地·中央公园众筹成功！</li>
+						<li class="fleft font26pt">海南三亚绿地·中央公园众筹成功！</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="mui-slider pop-project">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item">
+						<div class="clearfix pop-project-con positionr">
+							<div class="pop-project-in clearfix">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;" class="positionr">
+											<img class="mui-media-object mui-pull-left" src="images/project_pic.png">
+											<div class="mui-media-body">
+												<p class="mui-ellipsis font28pt">黄山丽朗度假村顶级套房卡</p>
+												<p class="mui-ellipsis font28pt finance">已筹资：<span class="font30pt">¥ 34757.00</span></p>
+												<p class="mui-ellipsis font26pt time">剩余时间：<span class="font32pt">12</span>天</p>
+												<p class="mui-ellipsis font26pt progress positionr">项目进度：<span class="positiona roate"><span class="font62pt">99</span>%</span>
+												</p>
+											</div>
+											<div class="positiona text">
+												<div class="positiona font26pt">参与：<span>236</span>人</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="heatrange positiona font26pt">
+								TOP<span class="positiona font28pt">1</span>
+							</div>
+						</div>
+					</div>
+					<div class="mui-slider-item">
+						<div class="clearfix pop-project-con positionr">
+							<div class="pop-project-in clearfix">
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<a href="javascript:;">
+											<img class="mui-media-object mui-pull-left" src="images/project_pic.png">
+											<div class="mui-media-body">
+												<p class="mui-ellipsis font28pt">黄山丽朗度假村顶级套房卡</p>
+												<p class="mui-ellipsis font28pt finance">已筹资：<span class="font30pt">¥ 34757.00</span></p>
+												<p class="mui-ellipsis font26pt time">剩余时间：<span class="font32pt">12</span>天</p>
+												<p class="mui-ellipsis font26pt progress positionr">项目进度：<span class="positiona roate"><span class="font62pt">99</span>%</span>
+												</p>
+											</div>
+											<div class="positiona text">
+												<div class="positiona font26pt">参与：<span>236</span>人</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="heatrange positiona font26pt">
+								TOP<span class="positiona font28pt">1</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="project-list clearfix">
+				<div class="pro-headline">
+					<span class="font30pt fleft">最热项目</span>
+					<span class="more fright font26pt positionr">更多</span>
+				</div>
+				<ul class="mui-table-view mui-grid-view">
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#" class="positionr">
+							<img class="mui-media-object" src="/images/project_pic.png">
+							<div class="mui-media-body">
+								<h3 class="font28pt ellipsis tleft">海南文昌市宏图1号</h3>
+								<p class="font26pt tleft">已筹资：<span></span></p>
+								<p class="font26pt tleft">项目进度：<span>95%</span></p>
+							</div>
+							<div class="positiona text">
+								<div class="positiona font26pt">参与：<span>236</span>人</div>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#" class="positionr">
+							<img class="mui-media-object" src="/images/project_pic.png">
+							<div class="mui-media-body">
+								<h3 class="font28pt ellipsis tleft">海南文昌市宏图1号</h3>
+								<p class="font26pt tleft">已筹资：<span>12345</span></p>
+								<p class="font26pt tleft">项目进度：<span>95%</span></p>
+							</div>
+							<div class="positiona text">
+								<div class="positiona font26pt">参与：<span>236</span>人</div>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#" class="positionr">
+							<img class="mui-media-object" src="/images/project_pic.png">
+							<div class="mui-media-body">
+								<h3 class="font28pt ellipsis tleft">海南文昌市宏图1号</h3>
+								<p class="font26pt tleft">已筹资：<span></span></p>
+								<p class="font26pt tleft">项目进度：<span>95%</span></p>
+							</div>
+							<div class="positiona text">
+								<div class="positiona font26pt">参与：<span>236</span>人</div>
+							</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#" class="positionr">
+							<img class="mui-media-object" src="/images/project_pic.png">
+							<div class="mui-media-body">
+								<h3 class="font28pt ellipsis tleft">海南文昌市宏图1号</h3>
+								<p class="font26pt tleft">已筹资：<span></span></p>
+								<p class="font26pt tleft">项目进度：<span>95%</span></p>
+							</div>
+							<div class="positiona text">
+								<div class="positiona font26pt">参与：<span>236</span>人</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="adver clearfix">
+				<ul class="mui-table-view mui-grid-view">
+					<li class="mui-table-view-cell mui-media mui-col-xs-12">
+						<a href="#">
+							<img class="mui-media-object" src="images/adver.png">
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="flash-sale clearfix">
+				<div class="pro-headline">
+					<span class="font30pt fleft">限时抢购</span>
+				</div>
+				<div class="mui-slider">
+					<div class="mui-slider-group">
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view">
+								<li class="mui-table-view-cell mui-media mui-col-xs-6">
+									<a href="#" class="positionr">
+										<img class="mui-media-object" src="images/project_pic.png">
+										<div class="mui-media-body">
+											<h3 class="font28pt tleft">UA活动养老卡</h3>
+											<p class="font26pt tleft">抢购人数：<span>600</span>人</p>
+										</div>
+										<div class="sale-lable positiona font22pt">1元抢购</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view">
+								<li class="mui-table-view-cell mui-media mui-col-xs-6">
+									<a href="#" class="positionr">
+										<img class="mui-media-object" src="images/project_pic.png">
+										<div class="mui-media-body">
+											<h3 class="font28pt tleft">UA活动养老卡</h3>
+											<p class="font26pt tleft">抢购人数：<span>600</span>人</p>
+										</div>
+										<div class="sale-lable positiona font22pt">1元抢购</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="mui-slider-item">
+							<ul class="mui-table-view mui-grid-view">
+								<li class="mui-table-view-cell mui-media mui-col-xs-6">
+									<a href="#" class="positionr">
+										<img class="mui-media-object" src="images/project_pic.png">
+										<div class="mui-media-body">
+											<h3 class="font28pt tleft">UA活动养老卡</h3>
+											<p class="font26pt tleft">抢购人数：<span>600</span>人</p>
+										</div>
+										<div class="sale-lable positiona font22pt">1元抢购</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="investor clearfix">
+				<div class="pro-headline">
+					<span class="font30pt fleft">投资人</span>
+					<span class="more fright font26pt positionr">更多</span>
+				</div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell mui-media positionr">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="images/photo.png">
+							<div class="mui-media-body">
+								<h3 class="font28pt">
+			                	<span>陈锋</span>
+			                	<em></em>
+			                </h3>
+								<p class="mui-ellipsis font24pt">行业：<span>房地产/建筑/建材/工程</span></p>
+								<p class="mui-ellipsis font24pt">职位：<span>工程师</span></p>
+								<p class="mui-ellipsis font24pt">
+									<span class="half">关注：<span>156</span>个</span>
+									<span class="half">领投：<span>3</span>个</span>
+								</p>
+								<p class="mui-ellipsis font24pt">
+									<span class="half">认购：<span>3</span>个</span>
+									<span class="half">支持：<span>3</span>个</span>
+								</p>
+							</div>
+						</a>
+						<div class="positiona person-lable ">个人</div>
+					</li>
+					<li class="mui-table-view-cell mui-media positionr">
+						<a href="javascript:;">
+							<img class="mui-media-object mui-pull-left" src="images/photo.png">
+							<div class="mui-media-body">
+								<h3 class="font28pt">陈锋</h3>
+								<p class="mui-ellipsis font24pt">行业：<span>房地产/建筑/建材/工程</span></p>
+								<p class="mui-ellipsis font24pt">职位：<span>工程师</span></p>
+								<p class="mui-ellipsis font24pt">
+									<span class="half">关注：<span>156</span>个</span>
+									<span class="half">领投：<span>3</span>个</span>
+								</p>
+								<p class="mui-ellipsis font24pt">
+									<span class="half">认购：<span>3</span>个</span>
+									<span class="half">支持：<span>3</span>个</span>
+								</p>
+							</div>
+						</a>
+						<div class="positiona organ-lable">机构</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript">
+	mui.init()
+</script>
+{{/block}}
+
+

@@ -1,0 +1,119 @@
+用户认证：
+USER0102
+证件类型：
+DICT0202
+性别列表：
+DICT0201
+1，健康体检
+视频：
+RV000108
+身份证   310108197103135217
+手机号 13818632023
+高凌平
+http://localhost:9228/mdtc/index
+18的接口只有1704120032这个编号有数据
+
+箭头函数的this指向直接父级，这点要注意
+1704120032 全部用this.recordNo替换
+
+解决异步，if watch
+
+数组内null 长度为0 多个if组合使用可能会导致
+det-father ？最小高度注释
+
+650103195807140615  身份证   手机号13488672912    姓名：孙雨蒙
+
+
+组件内容的分发。
+用于内容未分发 以及分发后 用于存储子组件的默认结构
+匿名插槽
+具名插槽<img slot="icon" src="..."> 用自定义图片代替原默认数据
+slot-scope 用于接收子组件slot的值
+is 的作用  <li is="my-comp2"></li>
+v-bind:is 可以动态改变组件
+
+ <component v-bind:is="currentView">
+        </component>
+keep-alive 避免组件的重新渲染
+自定义事件 暴露接口 父组件接收参数 用于组件暴露事件
+
+摸到 https://pro.modao.cc/app/vXxl34NCL8lhF40fRYxOTBQSir4l02F
+
+代理对象的 创建拦截器 侦听器 很有用 解决了功很多公共问题
+
+站在函数和对象的思维去解决问题 任何js问题都函数和变量以及对象之间的相互关系
+简化他们从最根本的最简化的方式来看问题
+
+function 运行缺少必要的支持时候，可以传参过去 案例 验证器的应用 ，如果不传Validator那么此方法运行时候将找不到它 ，又不想作为模块引入的时候就在运行时候作为参数传入，就可以在另外一个页面定义而不需要都卸载当前页
+
+//
+<!--    <p>
+      <input v-validate="'required|email'" name="email" type="text" placeholder="Email">
+      <span v-show="errors.has('email')"  >{{ errors.first('email') }}</span>
+    </p>-->
+ <!--   <input v-validate="'required|phone'" name="phone" type="text" placeholder="phone">
+    <span v-show="errors.has('phone')" >{{ errors.first('phone') }}</span>
+    <input v-validate="'required|ismobile'" name="ismobile" type="text" placeholder="Mobile">
+    <span v-show="errors.has('ismobile')" >{{ errors.first('ismobile') }}</span>
+-->
+//验证案例
+//可以写一个初始化数据迭代器
+
+接收参数 一个json对象 解析json对象里面有初始值如果没值得时候进行循环赋值或者没字段的时候 在掉接里调用 就可以省略复杂的判断 并将接口的返回结果报出来
+还有一个参数长度，可填可不填 应用于很多场景
+
+http://117.78.40.253:8981/workspace/myWorkspace.do?projectId=18#
+
+vuex
+https://pro.modao.cc/app/PHcFJ9gfHaKBx0IA6soLEsAXgMiLgvS
+
+阻止冒泡stop事件符
+
+全局操作vuex
+
+路由跳转回清除数据 window history不会 loca 看业务场景
+
+控制ruterlink大小 数据可以绑定在link上
+
+遇到bug可以往前推幾部來做判斷
+比如红色按钮点击以后加载图片，有时候图片数据没过来就去加载了，可以不去判断数据是否过来，而是在红色按钮那判断如果红色按钮出现了数据就一定有了
+
+//路由守卫可以监控所有的路由状态，公共的，单独的监视当前的。
+
+//路由回退back
+
+就以下面这个URL为例，介绍下普通URL的各部分组成
+http://www.aspxfans.com:8080/news/index.asp?boardID=5&ID=24618&page=1#name
+
+从上面的URL可以看出，一个完整的URL包括以下几部分：
+1.协议部分：该URL的协议部分为“http：”，这代表网页使用的是HTTP协议。在Internet中可以使用多种协议，如HTTP，FTP等等本例中使用的是HTTP协议。在"HTTP"后面的“//”为分隔符
+2.域名部分：该URL的域名部分为“www.aspxfans.com”。一个URL中，也可以使用IP地址作为域名使用
+3.端口部分：跟在域名后面的是端口，域名和端口之间使用“:”作为分隔符。端口不是一个URL必须的部分，如果省略端口部分，将采用默认端口
+4.虚拟目录部分：从域名后的第一个“/”开始到最后一个“/”为止，是虚拟目录部分。虚拟目录也不是一个URL必须的部分。本例中的虚拟目录是“/news/”
+5.文件名部分：从域名后的最后一个“/”开始到“？”为止，是文件名部分，如果没有“?”,则是从域名后的最后一个“/”开始到“#”为止，是文件部分，如果没有“？”和“#”，那么从域名后的最后一个“/”开始到结束，都是文件名部分。本例中的文件名是“index.asp”。文件名部分也不是一个URL必须的部分，如果省略该部分，则使用默认的文件名
+6.锚部分：从“#”开始到最后，都是锚部分。本例中的锚部分是“name”。锚部分也不是一个URL必须的部分
+7.参数部分：从“？”开始到“#”为止之间的部分为参数部分，又称搜索部分、查询部分。本例中的参数部分为“boardID=5&ID=24618&page=1”。参数可以允许有多个参数，参数与参数之间用“&”作为分隔符。
+
+//视频使用videoplay
+//https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm 测试地址
+
+//增加模板接口的显示或隐藏根据接口状态 this.templateval = false;
+
+pre 和code标签 让数据保持原样并控制样式
+　pre, code {
+    display: block;
+    overflow: auto;
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    white-space: pre-wrap; /* Firefox */
+  }
+//关于初次不滚动的轮播和拖动 初始化要放到ajkx里面 待数据实例化以后再调用
+//webgl技术 人工智能技术
+
+http://192.168.75.211:9228/index.welcome.html#/signVerify
+
+C:\Program Files\MongoDB\Server\3.6\bin
+mongodump -h 127.0.0.1:27017 -d mydb -o c:\data\dump
+writing mydb.site to
+done dumping mydb.site
+C:\Program Files\MongoDB\Server\3.6\bin>mongod --dbpath c:\data\db manggo启动
+

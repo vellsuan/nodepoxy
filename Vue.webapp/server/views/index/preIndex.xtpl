@@ -1,0 +1,23 @@
+{{extend ("../layoutMI")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/welcome.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<div class="mui-content" id="page_index_index">
+	<div class="welcome-page positionf">
+		<span class="opne-time positiona font22pt">跳过5s</span>
+	</div>
+	
+</div>
+
+{{/block}}
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/preIndex.js"></script>
+{{/block}}

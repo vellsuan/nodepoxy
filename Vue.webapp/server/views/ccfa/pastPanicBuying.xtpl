@@ -1,0 +1,20 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/pastPanicBuying.css" />
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content project-list" id="page_ccfa_project_buying">
+	<ul class="mui-table-view mui-grid-view" id="PanicBuy_List">
+		
+	</ul>
+	<div class="mui-popup mui-popup-in" style="display: none;"><div class="mui-popup-inner"><div class="mui-popup-title">规则说明</div><div class="mui-popup-text">平台抽奖结果计算规则如下：<br>1、每个参与者每购买一份即可获得一个中奖序号；<br>2、为计算公平，系统会获取上一工作日深圳指数与上证指数，去掉小数点后拼合，作为计算基数A；<br>3、取抽奖参与的最后成交的5笔订单（如不足5笔，取全部订单）的时间，按时、分、秒、毫秒的顺序组合相加，作为计算基数B；<br>4、取当天参与抽奖的所有订单数，作为计算基数C；<br>5、中奖序号=[（A+B)/C]+1；<br>6、如开奖时没有任何人参与抽奖，当期无中奖者（抽奖失败）。</div></div><div class="mui-popup-buttons"><span class="mui-popup-button mui-popup-button-bold">确定</span></div></div>
+	<div class="mui-popup-backdrop mui-active" style="display: none;"></div>
+</div>
+{{/block}}
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/pastPanicBuying.js"></script>
+{{/block}}

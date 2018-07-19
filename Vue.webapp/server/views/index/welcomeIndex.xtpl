@@ -1,0 +1,89 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/welcome.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<div class="mui-content">
+	<ul class="mui-table-view mui-grid-view section sectionOne">
+		<li class="mui-table-view-cell mui-media mui-col-xs-12">
+			<a href="#" class="positionr">
+				<div class="positiona lable font24pt">合伙</div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic.jpg" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listProject[0].imageUrl}}"/>
+				<div class="positiona text">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis tleft">{{indexList.listProject[0].itemName}}</h3>
+						<p class="font26pt tleft">
+							已筹金额：￥<span>{{indexList.listProject[0].ext1}}</span> 参与：
+							<span>{{indexList.listProject[0].ext2}}</span>人
+						</p>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view mui-grid-view section sectionTwo">
+		<li class="mui-table-view-cell mui-media mui-col-xs-8">
+			<a href="#" class="positionr">
+				<div class="positiona lable font24pt">买卡</div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic.jpg" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listProduct[0].imageUrl}}"/>
+				<div class="positiona text">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis tleft">{{indexList.listProduct[0].itemName}}</h3>
+						<p class="font26pt tleft">
+							限时抢购价：￥<span>{{indexList.listProduct[0].ext1}}</span>
+						</p>
+					</div>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-4">
+			<a href="#" class="positionr">
+				<div class="positiona lable font24pt">社交</div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic.jpg" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listsocial[0].imageUrl}}"/>
+				<div class="positiona text">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis tleft">{{indexList.listsocial[0].itemName}}</h3>
+						<p class="font26pt tleft">
+							社群人数：<span>{{indexList.listsocial[0].ext1}}</span>人
+						</p>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+	<ul class="mui-table-view mui-grid-view section sectionTwo sectionThr">
+		<li class="mui-table-view-cell mui-media mui-col-xs-6">
+			<a href="#" class="positionr">
+				<div class="positiona lable font24pt">围观</div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic.jpg" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listnews[0].imageUrl}}"/>
+				<div class="positiona text">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis-2 tleft">{{indexList.listnews[0].itemName}}</h3>
+					</div>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media mui-col-xs-6">
+			<a href="#" class="positionr">
+				<div class="positiona lable font24pt">参与</div>
+				<img class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/pic.jpg" data-src="{{(ServerPath.ServerImgURL||'')+indexList.listroadShow[0].imageUrl}}"/>
+				<div class="positiona text">
+					<div class="positiona font26pt">
+						<h3 class="mui-ellipsis-2 tleft">{{indexList.listroadShow[0].itemName}}</h3>
+					</div>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+{{/block}}
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/index.js"></script>
+{{/block}}

@@ -1,0 +1,173 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/leaderAuthen.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" />
+<link href="{{ServerPath.StaticPath||''}}/styles/mui.picker.css" rel="stylesheet" />
+<link href="{{ServerPath.StaticPath||''}}/styles/mui.poppicker.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/mui.picker.min.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<!--申请人是公司还是个人名字-->
+{{#if(vipInfo.user.userType==="3")}} 
+{{#set(companyName = vipInfo.user.userName)}}{{/set}} 
+{{/if}}
+{{#if(vipInfo.user.userType==="1")}} 
+{{#set(companyName = vipInfo.userInformation.companyName)}}{{/set}} 
+{{/if}}
+
+<!--认证成功反显判断-->
+{{#set(fillover='fillover')}}{{/set}}
+{{#set(hide="")}}{{/set}}
+{{#set(show="mui-navigate-right")}}{{/set}}
+{{#if(vipInfo.user.isAccreditedInvestor==="1" || vipInfo.user.isAccreditedInvestor==="3")}}
+{{#set(show = '')}}{{/set}} 
+{{#set(read = 'readonly')}}{{/set}} 
+{{#set(hide="hide")}}{{/set}}
+{{#set(fillover='')}}{{/set}}
+{{/if}}
+
+<!--默认信息-->
+{{#set(personalIntroudce=vipInfo.userInformation.personalIntroudce || '请输入')}}{{/set}}
+{{#set(attentionAddress=vipInfo.userInformation.attentionAddress || '请选择')}}{{/set}}
+{{#set(attentionIndustryName=vipInfo.userInformation.attentionIndustryName || '请选择')}}{{/set}}
+
+<!--领投人判断-->
+{{#if(projectId || projectId==='0')}}
+{{#set(hide="")}}{{/set}}
+{{#set(show="mui-navigate-right")}}{{/set}}
+{{#set(read = '')}}{{/set}}
+{{#set(fillover='fillover')}}{{/set}}
+
+<!--是领投人清空数据不反显示-->
+{{#set(personalIntroudce='请输入')}}{{/set}}
+{{#set(vipInfo.userInformation.personalIntroudce='')}}{{/set}}
+{{#set(attentionAddress='请选择')}}{{/set}}
+{{#set(attentionIndustryName='请选择')}}{{/set}}
+{{#set(failR = 'hide')}}{{/set}}
+{{/if}}
+
+
+
+
+<!--<div class="wrapper positiona" id="usercenter_leaderAuthen" projectId='{{projectId}}' hgtzr='{{hgtzr}}'>-->
+	<header class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left font30pt mui-icon-arrowleft"></a>
+		<h1 class="mui-title font32pt">{{title}}</h1>
+	</header>
+
+	<div class="real-authen-footer positionf {{hide}}">
+		<button data-attr ="{{ServerPath.PagePath||" "}}/uc/authenIndex"  data-src="{{ServerPath.PagePath||" "}}/uc/collarVote" type="button" class="leader-btn mui-btn mui-btn-danger font30pt">提交申请</button>
+	</div>
+	<!--简介弹框-->
+	<div class="brief-box positiona">
+		
+		<div class="mui-content interview">
+			<div class="interview-list">
+				<div class="message-item positionr">
+					<span class="positiona"></span>
+					<span class="font28pt">请输入信息</span>
+				</div>
+				<div class="message-textarea positionr">
+					<textarea {{read}} name="" rows="" cols="" class="font24pt textarea"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="fotter positionf clearfix">
+			<div class="btns fleft">
+				<div class="button cancle font30pt">取消</div>
+			</div>
+			<div class="btns fleft">
+				<div class="button submit font30pt">确认</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="mui-content" id="usercenter_leaderAuthen" projectId='{{projectId}}' hgtzr='{{hgtzr}}'>
+		<!--机构认证-->
+		<div class="real-authen">
+			<ul class="mui-table-view authen-class" id="leaderAuthen">
+				{{#if(vipInfo.user.isAccreditedInvestor==="4")}}
+					<li class="mui-table-view-cell positionr {{failR}} fail-reason">
+									<span class="mui-badge font26pt ellipsis">{{vipInfo.userInformation.fourReason}}</span> 
+									<span class="lable-name font28pt">失败原因：</span>
+					</li>
+				{{/if}}
+				
+				<li class="mui-table-view-cell positionr">
+					<!--<a class="mui-navigate-right">-->
+					<!--<input class="positiona font26pt tright" placeholder="张三/北京京城投资管理有限公司" type="text" name="" id="" value="" />-->
+					<span class="mui-badge font26pt companyName" companyName="{{companyName}}">{{companyName}}</span>
+					<span class="lable-dot positiona iconfont icon-quan"></span>
+					<span class="lable-name font28pt">申请人名称</span>
+					<!--</a>-->
+				</li>
+
+				<li class="mui-table-view-cell positionr">
+					<!--<a class="mui-navigate-right">-->
+					<span class="mui-badge font26pt belongIndustry" belongIndustry="{{vipInfo.userInformation.belongIndustry}}">{{vipInfo.userInformation.belongIndustryName}}</span>
+					<span class="lable-dot positiona icon-quan iconfont"></span>
+					<span class="lable-name font28pt">所在行业</span>
+					<!--</a>-->
+				</li>
+				<li class="mui-table-view-cell positionr">
+					<!--<a class="mui-navigate-right">-->
+					<span class="mui-badge font26pt location" location="{{vipInfo.user.district}}">{{vipInfo.user.district}}</span>
+					<span class="lable-dot positiona icon-quan iconfont"></span>
+					<span class="lable-name font28pt">所在地</span>
+					<!--</a>-->
+				</li>
+				<li class="mui-table-view-cell positionr fillinfo">
+					<a class="{{show}}">
+						<input readonly title="申请人简介" check="required" class="positiona font26pt tright introduce" placeholder="请输入" type="hidden" name="" id="" value="{{vipInfo.userInformation.personalIntroudce}}" />
+						<span class="mui-badge font26pt tright shopSpan {{fillover}} mui-ellipsis">{{personalIntroudce}}</span> 
+						<span class="lable-dot positiona iconfont icon-quan"></span>
+						<span class="lable-name font28pt">申请人简介</span>
+					</a>
+					<input title="工作职位" check="required" class="positiona font26pt tright duty" placeholder="请输入" type="hidden" name="" id="" value="{{vipInfo.userInformation.duty || ''}}" />
+				</li>
+				<li class="mui-table-view-cell positionr">
+					<a class="{{show}}">
+						<span class="mui-badge font26pt {{fillover}}">{{attentionAddress}}</span>
+						<span class="lable-dot positiona icon-quan iconfont"></span>
+						<span class="lable-name font28pt">关注项目所在地</span>
+					</a>
+					<input title="关注项目所在地" check="required" districtCode class="district" type="hidden" name="" id="" value="{{vipInfo.userInformation&&vipInfo.userInformation.attentionAddress||''}}" />
+					<button id='' class="slect mui-btn mui-btn-block check-area {{hide}}" type='button'>省市区选择</button>
+				</li>
+				<li class="mui-table-view-cell positionr">
+					<a class="{{show}}">
+						<span class="mui-badge font26pt {{fillover}}">{{attentionIndustryName}}</span>
+						<span class="lable-dot positiona icon-quan iconfont"></span>
+						<span class="lable-name font28pt">关注行业</span>
+					</a>
+					<input title="关注行业" check="required" class="belongIndustry guanzhubelongIndustry" type="hidden" name="" id="" value="{{vipInfo.userInformation.attentionIndustry || ''}}" />
+					<button id='industry' class="slect {{hide}} industry-btn authen-class-btn mui-btn mui-btn-block positiona" type='button'>选择行业</button>
+					<select name="" class="industry-box positiona hide">
+						{{#each(list)}}
+						<option sortCode="{{sortCode}}" industryName="{{industryName}}" industryId="{{industryId}}" value="{{industryName}}"></option>
+						{{/each}}
+					</select>
+				</li>
+				<li class="mui-table-view-cell"></li>
+			</ul>
+		</div>
+	</div>
+<!--</div>-->
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/leaderAuthen.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/mui.picker.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/mui.poppicker.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/mui.picker.min.js"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/city.data.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ServerPath.StaticPath||''}}/scripts/vendor/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+{{/block}}

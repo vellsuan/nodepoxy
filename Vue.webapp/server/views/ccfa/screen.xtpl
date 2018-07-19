@@ -1,0 +1,67 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/screen.css" />
+{{/block}}
+
+<!--项目筛选页面结构代码-->
+{{#block ("body")}}
+	<div class="mui-content screen" id="page_ccfa_screen">
+			<div class="screen-list1">
+				{{#if(!isInvestment)}}
+				<div class="speed-progress clearfix">
+                    <p class="font28pt">进度</p>
+                    <div class="ltype fleft font24pt ellipsis" data-key="complete" data-val="0">未满标</div>
+                    <div class="ltype fleft font24pt ellipsis" data-key="complete" data-val="1">已满标</div>
+                </div>
+				<div class="speed-progress clearfix">
+					<p class="font28pt">类型</p>
+					{{#each(projectType)}}
+						<div class="ltype fleft font24pt ellipsis" data-key="type" data-val="{{id}}">{{label}}</div>
+					{{/each}}
+				</div>
+                {{/if}}
+				<div class="speed-progress clearfix">
+					<p class="font28pt">行业</p>
+					{{#each(industryList)}}
+						<div class="ltype fleft font24pt ellipsis" data-key="industry" data-val="{{industryId}}">{{industryName}}</div>
+					{{/each}}
+				</div>
+				{{#if(isInvestment)}}
+                <div class="speed-progress clearfix">
+                    <p class="font28pt">类型</p>
+                    <div class="ltype fleft font24pt ellipsis" data-key="type" data-val="3">个人</div>
+                    <div class="ltype fleft font24pt ellipsis" data-key="type" data-val="1">机构</div>
+                </div>
+                {{/if}}
+			</div>
+			<div class="screen-list1 positionr">
+				<div class="speed-progress clearfix">
+					<p class="clearfix positionr">
+						<span class="fleft font28pt">地区</span>
+						<span class="fright mores font24pt">
+							更多
+							<em class="mui-icon mui-icon-arrowup positiona more"></em>
+						</span>
+					</p>
+					{{#each(projectArea)}}
+						<div class="ltype fleft font24pt ellipsis {{xindex>2?'hide hideImg':'showImg'}} area" data-key="district" data-val="{{sortCode}}">{{district}}</div>
+					{{/each}}
+				</div>
+			</div>
+		</div>
+		<div class="fotter positionf clearfix">
+			<div class="btns fleft">
+				<div class="button cancle font30pt">取消</div>
+			</div>
+			<div class="btns fleft">
+				<div class="button submit font30pt" data-pageUrl="{{pageUrl}}">提交</div>
+			</div>
+		</div>
+{{/block}}
+
+
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/screen.js"></script>
+{{/block}}

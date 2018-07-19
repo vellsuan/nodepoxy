@@ -1,0 +1,111 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/initiaiorAuthenper.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+{{#set(hide="")}}{{/set}}
+{{#set(show="mui-navigate-right")}}{{/set}}
+{{#if(vipInfo.user.isAuthor==="1" || vipInfo.user.isAuthor==="3")}}
+{{#set(show = '')}}{{/set}} 
+{{#set(read = 'readonly')}}{{/set}} 
+{{#set(hide="hide")}}{{/set}} 
+{{/if}} 
+<!--<div class="wrapper positiona">-->
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left font30pt mui-icon-arrowleft"></a>
+	<h1 class="mui-title font32pt">发起人认证-个人</h1>
+</header>
+
+<!--简介弹框-->
+<div class="brief-box positiona">
+
+	<div class="mui-content interview">
+		<div class="interview-list">
+			<div class="message-item positionr">
+				<span class="positiona"></span>
+				<span class="font28pt">请输入信息</span>
+			</div>
+			<div class="message-textarea positionr">
+				<textarea {{read}} name="" rows="" cols="" class="font24pt textarea"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="fotter positionf clearfix">
+		<div class="btns fleft">
+			<div class="button cancle font30pt">取消</div>
+		</div>
+		<div class="btns fleft">
+			<div class="button submit font30pt">确认</div>
+		</div>
+	</div>
+</div>
+
+<div class="real-authen-footer positionf {{hide}}">
+	<button data-src="{{ServerPath.PagePath||" "}}/uc/authenIndex" type="button" class="authenper-btn mui-btn mui-btn-danger font30pt">提交申请</button>
+</div>
+
+<div class="mui-content">
+	<div class="real-authen">
+		<ul class="mui-table-view authen-class" id="authen-class">
+			{{#if(vipInfo.user.isAuthor==="4")}}
+				<li class="mui-table-view-cell positionr fail-reason">
+								<span class="mui-badge font26pt ellipsis">{{vipInfo.userInformation.threeReason}}</span> 
+								<span class="lable-name font28pt ellipsis">失败原因：</span>
+				</li>
+			{{/if}}
+			<li class="mui-table-view-cell positionr">
+				<span personalName="{{vipInfo.user.userName}}" class="mui-badge font26pt mechanism-name personalName">{{vipInfo.user.userName}}</span>
+				<span class="lable-dot positiona iconfont icon-quan"></span>
+				<span class="lable-name font28pt">姓名</span>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<span personalCardType="1" class="mui-badge font26pt mechanism-name personalCardType">身份证</span>
+				<span class="lable-dot positiona iconfont icon-quan"></span>
+				<span class="lable-name font28pt">证件类型</span>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<span personalCardNo="{{vipInfo.userInformation.idcardNumber}}" class="mui-badge font26pt mechanism-name personalCardNo">{{vipInfo.userInformation.idcardNumber}}</span>
+				<span class="lable-dot positiona iconfont icon-quan"></span>
+				<span class="lable-name font28pt">证件号码</span>
+			</li>
+
+			<li class="mui-table-view-cell positionr fillinfo">
+				<a class="{{show}}">
+					<input readonly="readonly" title="个人简介" check="required" class="positiona font26pt tright personalIntroduce" placeholder="请输入" type="hidden" name="" id="" value="{{vipInfo.userInformation.personalIntroudce}}" />
+					<span class="mui-badge font26pt shopSpan tright mui-ellipsis">{{vipInfo.userInformation.personalIntroudce || '请输入'}}</span>
+					<span class="lable-dot positiona iconfont icon-quan"></span>
+					<span class="lable-name font28pt">个人简介</span>
+				</a>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<a class="{{show}}">
+					<input {{read}} title="开户行" check="required" class="positiona font26pt tright bank" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.bank}}" />
+					<!--<span class="mui-badge font26pt">请输入</span> -->
+					<span class="lable-dot positiona iconfont icon-quan"></span>
+					<span class="lable-name font28pt">开户行</span>
+				</a>
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<a class="{{show}}">
+					<input {{read}} title="银行账号" check="required banknum" class="positiona font26pt tright bankCardNo" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.bankCardNo}}" />
+					<!--<span class="mui-badge font26pt">请输入</span> -->
+					<span class="lable-dot positiona iconfont icon-quan"></span>
+					<span class="lable-name font28pt">银行账号</span>
+				</a>
+			</li>
+			<li class="mui-table-view-cell"></li>
+		</ul>
+	</div>
+</div>
+<!--</div>-->
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/initiaiorAuthenper.js"></script>
+{{/block}}

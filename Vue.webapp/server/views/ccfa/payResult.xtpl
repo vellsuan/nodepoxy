@@ -1,0 +1,59 @@
+{{extend ("../layout")}}
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/paymentResult.css"/>
+{{/block}}
+{{#block ("body")}}
+<div class="page page-current" id="page_usercenter_payresult">
+    <header class="bar bar-nav">
+        <a class="button button-link button-nav fleft" data-transition='slide-out'
+           onclick="javascript:history.back(-1)">
+            <span class="icon icon-left"></span>
+        </a>
+        <h1 class="title head_title"><span>支付结果</span></h1>
+    </header>
+
+    <div class="content">
+        {{#if(isSuccess)}}
+        <!-- 支付成功 -->
+        <div class="paymentSuccess" style="height: auto;">
+            <img style="width: 100%;height: auto;" src="{{ServerPath.StaticPath||''}}/images/paySuccess.jpg" alt=""/>
+            <p style="position:absolute;left:8.1rem;top:2.02rem;color: #fff;font-size: 1.05rem;">支付成功</p>
+            <p style="position:absolute;left:8.1rem;top:3.3rem;color: #fff;font-size: 0.65rem;">感谢在必盈平台支持项目</p>
+        </div>
+        {{else}}
+        <!-- 支付失败 -->
+        <div class="paymentFailure" style="height: auto;position: relative;">
+            <img style="width: 100%;height: auto;" src="{{ServerPath.StaticPath||''}}/images/payFailure.jpg" alt=""/>
+            <p style="position:absolute;left:8.1rem;top:2.02rem;color: #fff;font-size: 1.05rem;">支付失败</p>
+            <p style="position:absolute;left:8.1rem;top:3.3rem;color: #fff;font-size: 0.65rem;">{{failureReason || ""}}</p>
+        </div>
+        {{/if}}
+        <div class="clearfix" style="padding:0 8%;">
+            {{#if(payInfo.buyType==="1")}}<!--购买贡献值显示个人中心-->
+                <div class="viewOrder tcenter fleft">
+                    <a href="{{ServerPath.PagePath||''}}/uc"><button class="cursor font30pt">去往个人中心</button></a>
+                </div>  
+            {{elseif(payInfo.buyType==='2')}}
+                 <div class="viewOrder tcenter fleft">
+                    <a href="{{ServerPath.PagePath||''}}/uc/myPanicBuying"><button class="cursor font30pt">查看我的抢购</button></a>
+                </div>
+            {{else}}
+                <div class="viewOrder tcenter fleft">
+                    <a href="{{ServerPath.PagePath||''}}/uc/orderRaise"><button class="cursor font30pt">查看合伙订单</button></a>
+                </div>
+            {{/if}}
+            <div class="continueShopping tcenter fleft">
+                <a href="{{ServerPath.PagePath||''}}/ccfa"><button class="cursor font30pt">返回合伙首页</button></a>
+            </div>
+          
+        </div>
+    </div>
+    <!--<div class="doubtPhone tcenter">-->
+        <!--<span class="positionR font24pt">有问题找小布：<a href="tel:18888888888">18888888888</a><em></em></span>-->
+    <!--</div>-->
+</div>
+{{/block}}
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/publicLink.js"></script>
+{{/block}}

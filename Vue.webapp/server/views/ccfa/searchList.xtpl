@@ -1,0 +1,26 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/projectList.css" />
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content project-list" id="page_ccfa_project_search">
+	<div class="backBar"></div>
+	<div class="bar bar-nav ccfaBar">
+		<form action="javascript:return true" onsubmit="return false">
+			<div class="search-input">
+				<input type="search" id="search" placeholder="请输入项目名称">
+				<span class="mui-icon mui-icon-closeempty positiona"></span>
+			</div>
+		</form>
+	</div>
+	<ul class="mui-table-view mui-grid-view" id="searchList_box">
+	</ul>
+</div>
+{{/block}}
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/searchList.js"></script>
+{{/block}}

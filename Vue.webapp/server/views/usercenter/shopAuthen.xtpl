@@ -1,0 +1,124 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/shopkeeper.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}} 
+{{#set(show="mui-navigate-right")}}{{/set}} 
+{{#set(hide="")}}{{/set}} 
+{{#set(imghide="hide")}}{{/set}}
+<!--认证成功展示-->
+{{#if(vipInfo.user.isShopkeeper==="1" || vipInfo.user.isShopkeeper==="3")}} 
+{{#set(show = '')}}{{/set}} 
+{{#set(read = 'readonly')}}{{/set}} 
+{{#set(hide="hide")}}{{/set}} 
+{{#set(imghide="")}}{{/set}} 
+{{/if}} 
+<!--头像是否拼接-->
+{{#set(shopLogo=vipInfo.userInformation.shopLogo || '')}}{{/set}} 
+{{#set(userImg=vipInfo.user.userImg || '')}}{{/set}}
+{{#if(flag==="1")}} 
+{{#set(userImg=ServerPath.ServerImgURL+vipInfo.user.userImg || '')}}{{/set}} 
+{{/if}}
+{{#if(flag1==="1")}} 
+{{#set(shopLogo=ServerPath.ServerImgURL+vipInfo.userInformation.shopLogo || '')}}{{/set}} 
+{{/if}}
+
+<!--认证失败展示之前上传的图片-->
+{{#set(msg="上传")}}{{/set}} 
+{{#if(vipInfo.user.isShopkeeper==="4")}} 
+	{{#set(imghide="")}}{{/set}} 
+	{{#set(msg="")}}{{/set}} 
+{{/if}}
+<header class="mui-bar mui-bar-nav">
+	<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left font30pt mui-icon-arrowleft"></a>
+	<h1 class="mui-title font32pt">店主认证</h1>
+</header>
+
+<!--简介弹框-->
+<div class="brief-box positiona">
+
+	<div class="mui-content interview">
+		<div class="interview-list">
+			<div class="message-item positionr">
+				<span class="positiona"></span>
+				<span class="font28pt">请输入信息</span>
+			</div>
+			<div class="message-textarea positionr">
+				<textarea name="" rows="" cols="" class="font24pt textarea"></textarea>
+			</div>
+		</div>
+	</div>
+	<div class="fotter positionf clearfix">
+		<div class="btns fleft">
+			<div class="button cancle font30pt">取消</div>
+		</div>
+		<div class="btns fleft">
+			<div class="button submit font30pt">确认</div>
+		</div>
+	</div>
+</div>
+
+<div class="real-authen-footer positionf {{hide}}">
+	<button data-src="{{ServerPath.PagePath||" "}}/uc/authenIndex" type="button" class="submint-btn mui-btn mui-btn-danger font30pt">提交申请</button>
+</div>
+<div class="mui-content">
+	<!--店主认证-->
+	<div class="real-authen">
+		<ul class="mui-table-view authen-class" id="shoper">
+			{{#if(vipInfo.user.isShopkeeper==="4")}}
+				<li class="mui-table-view-cell positionr fail-reason">
+								<span class="mui-badge font26pt ellipsis">{{vipInfo.userInformation.twoReason}}</span> 
+								<span class="lable-name font28pt">失败原因：</span>
+				</li>
+			{{/if}}
+			<li class="mui-table-view-cell positionr">
+				<a class="{{show}}">
+					<input {{read}} title="店铺名称" check="required" class="shopname positiona font26pt tright" placeholder="请输入" type="text" name="" id="" value="{{vipInfo.userInformation.shopName}}" />
+					<!--<span class="mui-badge font26pt">请输入</span> -->
+					<span class="lable-dot positiona iconfont icon-quan"></span>
+					<span class="lable-name font28pt">店铺名称</span>
+				</a>
+			</li>
+			<li class="mui-table-view-cell positionr fillinfo">
+				<a class="{{show}}">
+					<input title="店铺简介" check="required" class="shopintro positiona font26pt tright" placeholder="请输入" type="hidden" name="" id="" value="{{vipInfo.userInformation.shopIntroduce}}" />
+					<span title="店铺简介" check="required" class="shopSpan ellipsis fright font26pt tright mui-ellipsis">{{vipInfo.userInformation.shopIntroduce || '请输入'}}</span>
+					<span class="lable-dot positiona iconfont icon-quan"></span>
+					<span class="lable-name font28pt">店铺简介</span>
+				</a>
+			</li>
+
+			<li class="mui-table-view-cell positionr">
+				<a class="{{show}}">
+					<span class="mui-badge font26pt {{hide}}">{{msg}}</span>
+					<span class="lable-dot positiona icon-quan iconfont"></span>
+					<span class="lable-name font28pt">店铺logo</span>
+				</a>
+				<img title="店铺logo" class="ImgPr ImgPrshop positiona {{imghide}} shopLogo" data-attr='{{vipInfo.userInformation.shopLogo}}' src="{{shopLogo}}" />
+				<span id="shopLogo" class="imgId hide"></span>
+				<input class="slect file-up positiona {{hide}}" type="file" name="" id="shop" value="" />
+			</li>
+			<li class="mui-table-view-cell positionr">
+				<a class="">
+					<!--<span class="mui-badge font26pt">上传</span>-->
+					<span class="lable-dot positiona icon-quan iconfont hide"></span>
+					<span class="lable-name font28pt">头像</span>
+				</a>
+				<img title="头像" class="ImgPr positiona shopImg" data-attr='{{userImg}}' src="{{userImg}}" />
+				<span id="headImg" class="imgId hide"></span>
+				<input class="slect file-up positiona {{hide}}" type="file" name="" id="head" value="" />
+			</li>
+		</ul>
+	</div>
+</div>
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/shopAuthen.js"></script>
+{{/block}}

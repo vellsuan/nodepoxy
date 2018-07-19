@@ -1,0 +1,233 @@
+{{extend ("../layout")}}
+
+
+<!--本页面样式代码-->
+{{#block ("styles")}}
+	<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/index.css" />
+{{/block}}
+
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+		{{{include ("../util/footer")}}}
+		<div id="topBar">
+			<div class="backBar"></div>
+			<div class="searchOutBox positionf"></div>
+			<div class="bar bar-nav ccfaBar">
+				<a class="button button-link button-nav" href="{{ServerPath.PagePath}}/ccfa/searchList">
+					<h1 class="title head_title"><span class="mui-icon mui-icon-search positiona"></span>
+					<div class="searchBox">请输入项目名称</div></h1>
+				</a>
+		    </div>
+		</div>
+		<div class="mui-content" id="page_ccfa_ccfa">
+			<!--轮播图-->
+			<div id="slider" class="mui-slider">
+				<div class="mui-slider-group mui-slider-loop slider-img">
+					{{#if(banner.length)}}
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)" openWin="1">
+								<img linkAddress="{{banner[banner.length-1].linkSrc}}" src="{{ServerPath.StaticPath||''}}/images/productDetail.png" data-src="{{(ServerPath.ServerImgURL||'')+banner[banner.length-1].imgSrc}}">
+							</a>
+						</div>
+						{{#each(banner)}}
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)" openWin="1">
+								<img linkAddress="{{linkSrc}}" src="{{ServerPath.StaticPath||''}}/images/productDetail.png" data-src="{{(ServerPath.ServerImgURL||'')+imgSrc}}">
+							</a>
+						</div>
+						{{/each}}
+						<div class="mui-slider-item">
+							<a href="javascript:void(0)" openWin="1">
+								<img linkAddress="{{banner[0].linkSrc}}" src="{{ServerPath.StaticPath||''}}/images/productDetail.png" data-src="{{(ServerPath.ServerImgURL||'')+banner[0].imgSrc}}">
+							</a>
+						</div>
+					{{/if}}
+				</div>
+				<div class="mui-slider-indicator">
+					{{#each(banner)}}
+						<div class="mui-indicator {{xindex===0?'mui-active':''}}"></div>
+					{{/each}}
+				</div>
+			</div>
+
+			<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="{{ServerPath.PagePath||''}}/ccfa/allProject?orderByCloum=numm">
+						<span class="mui-icon">
+			            	<img src="{{ServerPath.StaticPath||''}}/images/allpoj.png"/>
+			            </span>
+						<div class="mui-media-body font24pt">所有项目</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="{{ServerPath.PagePath||''}}/ccfa/investmentList">
+						<span class="mui-icon">
+		            	<img src="{{ServerPath.StaticPath||''}}/images/touziren.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">投资人</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="{{ServerPath.PagePath||''}}/ccfa/projectInformation">
+						<span class="mui-icon">
+		            	<img src="{{ServerPath.StaticPath||''}}/images/pingtaizixun.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">项目资讯</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
+					<a href="{{ServerPath.PagePath||''}}/ccfa/projectDynamics">
+						<span class="mui-icon">
+		            	<img src="{{ServerPath.StaticPath||''}}/images/xiangmudongtai.png"/>
+		            </span>
+						<div class="mui-media-body font24pt">项目动态</div>
+					</a>
+				</li>
+			</ul>
+			<div class="message clearfix">
+				<div class="fleft micon"></div><!--
+				--><div class="fleft title font26pt">必盈消息：</div><!--
+				--><div class="fleft mescon clearfix positionr breakingNews" >
+					<ul class="clearfix positiona dynNews">
+						{{#each(list)}}
+							<li class="font26pt mui-control-item projectNews" data-id="{{articleId}}"><a href="javascript:void(0);">{{title}}</a></li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+
+			<div class="mui-slider pop-project">
+				<div class="mui-slider-group slider-img">
+					{{#each(topBanner)}}
+						<div class="mui-slider-item">
+							<div class="clearfix pop-project-con positionr">
+								<div class="pop-project-in clearfix">
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-media">
+											<a href="{{ServerPath.PagePath}}/ccfa/projectDetail?projectId={{id}}" class="positionr">
+												<img style="height:5.9rem;" class="mui-media-object mui-pull-left" src="{{ServerPath.StaticPath||''}}/images/project_pic.png" data-src="{{ServerPath.ServerImgURL+projectMinPic}}">
+												<div class="mui-media-body">
+													<p class="mui-ellipsis font28pt">{{projectName}}</p>
+													<p class="mui-ellipsis font28pt finance">已筹：<span class="font30pt">¥ {{tools.formatCurrency(totalCollect||0)}}</span></p>
+													<p class="mui-ellipsis font26pt time">剩余时间：<span class="font32pt">{{leftDay>0?leftDay:'0'}}</span>天</p>
+													<p class="mui-ellipsis font26pt progress positionr">项目进度：<span>{{tools.toFixed(schedule*100,1)}}%</span>
+													</p>
+												</div>
+												<div class="positiona text">
+													<div class="positiona font26pt">参与：<span>{{heat}}</span>人</div>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div class="heatrange positiona font26pt">
+									TOP<span class="positiona font28pt">{{xindex+1}}</span>
+								</div>
+							</div>
+						</div>
+					{{/each}}
+				</div>
+			</div>
+
+			<div class="project-list clearfix">
+				<div class="pro-headline">
+					<span class="font30pt fleft">最热项目</span>
+					<span class="more fright font26pt positionr"><a href="{{ServerPath.PagePath}}/ccfa/allProject?orderByCloum=numm">更多</a></span>
+				</div>
+				<ul class="mui-table-view mui-grid-view">
+					{{#each(hotBanner)}}
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="{{ServerPath.PagePath}}/ccfa/projectDetail?projectId={{id}}" class="positionr">
+							<img style="height:6.3rem;" class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/project_pic.png" data-src="{{ServerPath.ServerImgURL+projectMinPic}}">
+							<div class="mui-media-body">
+								<h3 class="font28pt ellipsis tleft">{{projectName}}</h3>
+								<p class="font26pt tleft">已筹：<span>¥ {{tools.formatCurrency(totalCollect||0)}}</span></p>
+								<p class="font26pt tleft">项目进度：<span>{{tools.toFixed(schedule*100,1)}}%</span></p>
+							</div>
+							<div class="positiona text">
+								<div class="positiona font26pt">参与：<span>{{heat}}</span>人</div>
+							</div>
+						</a>
+					</li>
+					{{/each}}									
+				</ul>
+			</div>
+			<div class="adver clearfix">
+				<ul class="mui-table-view mui-grid-view">
+					<li class="mui-table-view-cell mui-media mui-col-xs-12">
+						{{#if(advert.length)}}
+							<a href="javascript:void(0)" openWin="1">
+								<img linkAddress="{{advert[0].linkSrc}}" style="height:6.25rem;" class="mui-media-object" src="{{ServerPath.StaticPath||''}}/images/adver.png" data-src="{{ServerPath.ServerImgURL+advert[0].imgSrc}}">
+							</a>
+						{{/if}}
+					</li>
+				</ul>
+			</div>
+			<div class="flash-sale clearfix">
+				<div class="pro-headline">
+					<span class="font30pt fleft">限时抢购</span>
+					<span class="more fright font26pt positionr"><a href="{{ServerPath.PagePath}}/ccfa/pastPanicBuying">往期抢购</a></span>
+				</div>
+				<div class="mui-slider flashBuy">
+					<div class="mui-slider-group"  id="flash_list">
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="investor clearfix">
+				<div class="pro-headline">
+					<span class="font30pt fleft">投资人</span>
+					<span class="more fright font26pt positionr"><a href="{{ServerPath.PagePath}}/ccfa/investmentList">更多</a></span>
+				</div>
+				<ul class="mui-table-view">
+				{{#each(investor)}}
+					<li class="mui-table-view-cell mui-media positionr">
+						<a href="{{ServerPath.PagePath}}/ccfa/investmentDetails?investmentId={{userId}}">
+							<img class="mui-media-object mui-pull-left" src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{ServerPath.ServerImgURL+userImg}}">
+							<div class="mui-media-body">
+								<h3 class="font28pt">
+								{{#if(userType === "3")}}
+			                		<span>{{userName}}</span>
+			                	{{elseif(userType === "1")}}
+			                		<span>{{userInformation.companyName}}</span>
+			                	{{/if}}
+			                	<em></em>
+			                </h3>
+								<p class="mui-ellipsis font24pt">行业：<span>{{userInformation.belongIndustryName}}</span></p>
+								<p class="mui-ellipsis font24pt">职位：<span>{{userInformation.duty}}</span></p>
+								<p class="mui-ellipsis font24pt">
+									<span class="half">关注：<span>{{userNumCount.attentNum}}</span>个</span>
+									<span class="half">领投：<span>{{userNumCount.leaderNum}}</span>个</span>
+								</p>
+								<p class="mui-ellipsis font24pt">
+									<span class="half">认购：<span>{{userNumCount.callNum}}</span>个</span>
+									<span class="half">支持：<span>{{userNumCount.supportNum}}</span>个</span>
+								</p>
+							</div>
+						</a>
+						{{#if(userType==="1")}}
+                        <div class="positiona organ-lable">机构</div>
+                        {{elseif(userType === "3")}}
+                        <div class="positiona person-lable">个人</div>
+                        {{/if}}
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+{{/block}}
+
+
+<!--js业务代码开发-->
+{{#block ("scripts")}}
+<!-- <script type="text/javascript">
+	mui.init()
+</script> -->
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/layout.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/ccfa.js"></script>
+{{/block}}
+
+

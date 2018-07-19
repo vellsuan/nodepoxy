@@ -1,0 +1,168 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/raiseInterviews.css" /> {{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content discount">
+	<div id="slider" class="mui-slider">
+		<div id="sliderSegmentedControl" class="mui-segmented-control mui-segmented-control-inverted">
+			<a class="mui-control-item font30pt mui-active" href="#item1mobile" id="read-message">
+				未读消息
+			</a>
+			<a class="mui-control-item font30pt" href="#item2mobile" id="all-message">
+				全部消息
+			</a>
+		</div>
+		<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
+		<div class="mui-slider-group">
+			<div id="item1mobile" class="mui-slider-item mui-control-content mui-active not-used">
+				<div class="discount-list">
+					<ul class="mui-table-view content-list">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;" class="clearfix">
+								<div class="mui-pull-left">
+									<div class="mui-pull-img">
+										<img src="images/photo.png">
+									</div>
+								</div>
+								<div class="mui-media-body">
+									<p class="mui-ellipsis font28pt">
+										<span class="names positionr">
+													王蒙
+													<em class="positiona">
+														<img src="images/grade.png" alt="">
+													</em>
+												</span>
+										<span class="positiona person-datas font24pt">2017-09-12 12:12:23</span>
+									</p>
+									<p class="mui-ellipsis font26pt">
+										“黄山丽朗度假村顶级套房卡”
+									</p>
+									<p class="mui-ellipsis font26pt duan-ele">
+										您好，昨天咱们聊到筹资前期，这么好的事情我
+									</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;" class="clearfix">
+								<div class="mui-pull-left">
+									<div class="mui-pull-img">
+										<img src="images/photo.png">
+									</div>
+								</div>
+								<div class="mui-media-body">
+									<p class="mui-ellipsis font28pt">
+										<span class="names positionr">
+													王蒙
+													<em class="positiona">
+														<img src="images/grade.png" alt="">
+													</em>
+												</span>
+										<span class="positiona person-datas font24pt">2017-09-12 12:12:23</span>
+									</p>
+									<p class="mui-ellipsis font26pt">
+										“黄山丽朗度假村顶级套房卡”
+									</p>
+									<p class="mui-ellipsis font26pt duan-ele">
+										您好，昨天咱们聊到筹资前期，这么好的事情我
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="item2mobile" class="mui-slider-item mui-control-content already-used">
+				<div class="discount-list">
+					<ul class="mui-table-view content-list">
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;" class="clearfix">
+								<div class="mui-pull-left">
+									<div class="mui-pull-img">
+										<img src="images/photo.png">
+									</div>
+								</div>
+								<div class="mui-media-body">
+									<p class="mui-ellipsis font28pt">
+										<span class="names positionr">
+													王蒙
+													<em class="positiona">
+														<img src="images/grade.png" alt="">
+													</em>
+												</span>
+										<span class="positiona person-datas font24pt">2017-09-12 12:12:23</span>
+									</p>
+									<p class="mui-ellipsis font26pt">
+										“黄山丽朗度假村顶级套房卡”
+									</p>
+									<p class="mui-ellipsis font26pt duan-ele">
+										您好，昨天咱们聊到筹资前期，这么好的事情我
+									</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;" class="clearfix">
+								<div class="mui-pull-left">
+									<div class="mui-pull-img">
+										<img src="images/photo.png">
+									</div>
+								</div>
+								<div class="mui-media-body">
+									<p class="mui-ellipsis font28pt">
+										<span class="names positionr">
+													王蒙
+													<em class="positiona">
+														<img src="images/grade.png" alt="">
+													</em>
+												</span>
+										<span class="positiona person-datas font24pt">2017-09-12 12:12:23</span>
+									</p>
+									<p class="mui-ellipsis font26pt">
+										“黄山丽朗度假村顶级套房卡”
+									</p>
+									<p class="mui-ellipsis font26pt duan-ele">
+										您好，昨天咱们聊到筹资前期，这么好的事情我
+									</p>
+								</div>
+							</a>
+						</li>
+						<li class="mui-table-view-cell mui-media">
+							<a href="javascript:;" class="clearfix">
+								<div class="mui-pull-left">
+									<div class="mui-pull-img">
+										<img src="images/photo.png">
+									</div>
+								</div>
+								<div class="mui-media-body">
+									<p class="mui-ellipsis font28pt">
+										<span class="names positionr">
+													王蒙
+													<em class="positiona">
+														<img src="images/grade.png" alt="">
+													</em>
+												</span>
+										<span class="positiona person-datas font24pt">2017-09-12 12:12:23</span>
+									</p>
+									<p class="mui-ellipsis font26pt">
+										“黄山丽朗度假村顶级套房卡”
+									</p>
+									<p class="mui-ellipsis font26pt duan-ele">
+										您好，昨天咱们聊到筹资前期，这么好的事情我
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/myInterview.js"></script>
+{{/block}}

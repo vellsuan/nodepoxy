@@ -1,0 +1,110 @@
+{{extend ("../layout")}}
+
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/investmentDeatils.css" />
+{{/block}}
+
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+  <div class="mui-content investmentDeatils" id="page_ccfa_investmentDeatils">
+      <ul class="mui-table-view content-list">
+          <li class="mui-table-view-cell mui-media clearfix">
+              <div class="mui-pull-left">
+                  <div class="mui-pull-img">
+                      <img src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{(ServerPath.ServerImgURL||'') + details.userImg}}">
+                  </div>
+              </div>
+              <div class="mui-media-body">
+                  <p class='mui-ellipsis font28pt'>
+                      <span class="names positionr">
+                      	  {{#if(details.userType === "1")}}
+                          	{{details.userInformation.companyName || "-"}}
+                          {{elseif(details.userType === "3")}}
+                          	{{details.userName || "-"}}
+                          {{/if}}
+                          <em class="positiona">
+                              {{#if(details.grade+"" === "1")}}
+                              <img src="{{ServerPath.StaticPath||''}}/images/grade.png">
+                              {{elseif(details.grade+"" === "2")}}
+                              <img src="{{ServerPath.StaticPath||''}}/images/grade.png">
+                              {{/if}}
+                          </em>
+                      </span>
+                      {{#if(details.userType === "1")}}
+                      <span class="positiona organ-lable">机构</span>
+                      {{elseif(details.userType === "3")}}
+                      <span class="positiona person-lable">个人</span>
+                      {{/if}}
+                  </p>
+                  <p class='mui-ellipsis font24pt'>
+                      行业：<span>{{details.userInformation.belongIndustryName || "-"}}</span>
+                  </p>
+                  <p class='mui-ellipsis font24pt'>
+                      职位：<span>{{details.userInformation.duty || "-"}}</span>
+                  </p>
+                  <p class='mui-ellipsis font24pt'>
+                      关注行业：<span>{{details.userInformation.attentionIndustryName || "-"}}</span>
+                  </p>
+                  <p class='mui-ellipsis font24pt'>
+                      加入时间：<span class="registerTime" data-time="{{details.registerTime || "-"}}">{{details.registerTime || "-"}}</span>
+                  </p>
+              </div>
+          </li>
+      </ul>
+      <ul class="mui-table-view">
+          <li class="mui-table-view-cell">
+              <a class="mui-navigate-right iconfont icon-jiangbei" href="{{ServerPath.PagePath||''}}/ccfa/allProject?orderByCloum=leftDate&orderType=ASC&userId={{details.userId}}&cType=1">
+                  <span class="mui-badge mui-badge-danger">{{details.userNumCount.attentNum || "0"}}</span>
+                  <span class="projects font28pt">关注项目</span>
+              </a>
+          </li>
+          <li class="mui-table-view-cell">
+              <a class="mui-navigate-right iconfont icon-2xinxilan" href="{{ServerPath.PagePath||''}}/ccfa/allProject?orderByCloum=leftDate&orderType=ASC&userId={{details.userId}}&cType=2">
+                  <span class="mui-badge mui-badge-purple">{{details.userNumCount.talkNum || "0"}}</span>
+                  <span class="projects font28pt">谈约项目</span>
+              </a>
+          </li>
+          <li class="mui-table-view-cell">
+              <a class="mui-navigate-right iconfont icon-xin" href="{{ServerPath.PagePath||''}}/ccfa/allProject?orderByCloum=leftDate&orderType=ASC&userId={{details.userId}}&cType=3">
+                  <span class="mui-badge mui-badge-warning">{{details.userNumCount.supportNum || "0"}}</span>
+                  <span class="projects font28pt">支持项目</span>
+              </a>
+          </li>
+          <li class="mui-table-view-cell">
+              <a class="mui-navigate-right iconfont icon-jiangpai" href="{{ServerPath.PagePath||''}}/ccfa/allProject?orderByCloum=leftDate&orderType=ASC&userId={{details.userId}}&cType=8">
+                  <span class="mui-badge mui-badge-warning">{{details.userNumCount.leaderNum || "0"}}</span>
+                  <span class="projects font28pt">领投项目</span>
+              </a>
+          </li>
+          <li class="mui-table-view-cell">
+              <a class="mui-navigate-right iconfont icon-xiangmu" href="{{ServerPath.PagePath||''}}/ccfa/allProject?orderByCloum=leftDate&orderType=ASC&userId={{details.userId}}&cType=7">
+                  <span class="mui-badge mui-badge-warning">{{details.userNumCount.callNum || "0"}}</span>
+                  <span class="projects font28pt">认购项目</span>
+              </a>
+          </li>
+          <!--<li class="mui-table-view-cell">
+              <a class="mui-navigate-right iconfont icon-ren" href="{{ServerPath.PagePath||''}}/ccfa/investmentList?hasFriendsId={{details.userId}}">
+                  <span class="mui-badge mui-badge-warning">{{details.userNumCount.userFriendsNum || "0"}}</span>
+                  <span class="projects font28pt">TA的好友</span>
+              </a>
+          </li>-->
+      </ul>
+  </div>
+  <!--<div class="fotter positionf clearfix">
+      <div class="btns font30pt add-friend-btn">
+          加为好友
+      </div>
+  </div>-->
+{{/block}}
+
+
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/investmentDetails.js"></script>
+{{/block}}
+
+

@@ -1,0 +1,87 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/community.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+
+<div class="mui-content" id="usercenter_community">
+	<div class="clearfix">
+		<div class="title clearfix font24pt group-title">
+			<span class="fleft">我管理的群</span>
+			<span class="fright">{{list1L}}</span>
+		</div>
+		<!--如果两个数组都没数据显示此项-->
+		{{#if(list1.length<1&&list2.length<1)}}
+			<div class="no-data positionf">
+				<dl class="no-data-top">
+					<dt class="no-data-img-top"></dt>
+					<dd class="no-data-tips font30pt tcenter">您暂无加入的社群</dd>
+				</dl>
+				<div class="addin-process"></div>
+				<div class="addin-process-text font26pt tcenter">
+					您可以选择搜索感兴趣的社群加入，还可以 通过购买产品、购买项目、评论、关注、约 谈自动加入社群。
+				</div>
+				
+				<div class="btns-box clearfix tcenter">
+					<span class="font30pt fleft">
+						<a href="{{ServerPath.PagePath||''}}/ccfa">合伙首页</a>
+					</span>
+					<span class="font30pt fright" data-src = "">
+						<a href="{{ServerPath.ShopPagePath||''}}/index">买卡首页</a>
+					</span>
+				</div>
+			</div>
+		{{/if}}
+		<ul class="mui-table-view">
+			{{#if(list1.length<1)}}
+				 <div class="mescroll-empty">
+					<p class="empty-tip">暂无相关数据~~~</p>
+				 </div>
+			{{/if}} 
+		{{#each(list1)}}
+			<li class="mui-table-view-cell mui-media">
+				<a href="{{ServerPath.PagePath||''}}/uc/communityMember?groupId={{id}}">
+					<img class="mui-media-object mui-pull-left" src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{ServerPath.ServerImgURL}}{{imgUrl}}">
+					<div class="mui-media-body">
+						<p class="mui-ellipsis">{{name}}</p>
+					</div>
+				</a>
+			</li>
+		{{/each}}
+	</ul>
+
+	<div class="title clearfix font24pt group-title">
+		<span class="fleft">我加入的群</span>
+		<span class="fright">{{list2L}}</span>
+	</div>
+	<ul class="mui-table-view">
+		{{#if(list2.length<1)}}
+			 <div class="mescroll-empty">
+				<p class="empty-tip">暂无相关数据~~~</p>
+			</div>
+		{{/if}} 
+		{{#each(list2)}}
+			<li class="mui-table-view-cell mui-media">
+				<a href="{{ServerPath.PagePath||''}}/uc/communityMember?groupId={{id}}">
+					<img class="mui-media-object mui-pull-left" src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{ServerPath.ServerImgURL}}{{imgUrl}}">
+					<div class="mui-media-body">
+						<p class="mui-ellipsis">{{name}}</p>
+					</div>
+				</a>
+			</li>
+		{{/each}}
+</ul>
+</div>
+
+</div>
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/community.js"></script>
+{{/block}}

@@ -1,0 +1,74 @@
+{{extend ("../layout")}}
+
+{{#block ("styles")}}
+<!--index head block-->
+<link type="text/css" href="../styles/register.css" rel="stylesheet"  />
+<link type="text/css" href="../styles/slide.css" rev="stylesheet" rel="stylesheet"  />
+{{/block}}
+
+{{#block ("body")}}
+<!--index body block-->
+	<!-- banner -->
+	<div id="login_register" class="main positionR">
+		<div class="banner banner_cont">
+		      <div class="container">
+					<div id="slides">
+							{{#each(list.adverList)}}
+								<img src="../images/banner_01.jpg" data-src="{{root.IMG_URL+imgSrc}}">
+						    {{/each}}
+						    
+						    {{#if(!list.adverList)}}
+						         <img src="../images/banner_01.jpg" tip="没有数据！">
+						    {{/if}}
+				    </div>
+			 </div>
+		</div>
+		<div class="main_con positionA">
+			<div class="main_in positionA">
+				<div class="title">
+					<span>会员注册</span>
+					<span>您只需要完成以下资料，便可轻松注册丽朗会员</span>
+				</div>
+				<form name="example_form" id="register_loginFrom">
+				<ul class="mgs clearfix">
+					<li>
+						<span>手机号码：</span>
+						<input type="text" id="phoneNum" name="phoneNum" check="required|mobile" class="text"/>
+						<p><font>验证错误信息</font></p>
+					</li>
+					<li>
+						<span>设置密码：</span>
+						<input type="password" id="passNum" name="passNum" check="required|reg_password" class="text"/>
+						<p><font>验证错误信息</font></p>
+					</li>
+					<li>
+						<span>重复密码：</span>
+						<input type="password" id="repeatNum" name="repeatNum" check="required|reg_password" class="text"/>
+						<p><font>验证错误信息</font></p>
+					</li>
+					<li>
+						<span>验证码：</span>
+						<input type="text" id="validNum" name="validNum" check="required|num" class="text ytext"/>
+						<input type="button" class="mtext tcenter cursor" value="发送验证码"/>
+						<p><font>验证错误信息</font></p>
+					</li>
+					<li>
+						<span></span>
+						<input type="button" class="btn cursor tcenter" value="注册"/>
+						<input type="button" class="rbtn cursor tcenter" value="重置"/>
+					</li>
+				</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+{{/block}}
+
+
+{{#block ("scripts")}}
+<!--index scripts block-->
+
+<script src="{{ServerPath.StaticPath||''}}/assets/scripts/register.js"></script>
+{{/block}}
+
+

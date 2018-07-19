@@ -1,0 +1,12 @@
+<MKM version="2.0" imageFileUrl="file:///Users/a77/Documents/%E4%BD%93%E6%A3%80/%E4%BD%93%E6%A3%80%E6%8A%A5%E5%91%8A/%E4%B8%8B%E8%BD%BD.jpg">
+  <Marks>
+    <LengthMark direction="3" color="16711680" length="186" x="597" y="202"/>
+    <LengthMark direction="12" color="16711680" length="220" x="508" y="369"/>
+    <LengthMark direction="3" color="16711680" length="204" x="698" y="184"/>
+    <LengthMark direction="12" color="16711680" length="20" x="508" y="251"/>
+    <LengthMark direction="12" color="16711680" length="14" x="559" y="256"/>
+    <TextMark defaultDirection="5" direction="5" color="16711680" x="525" y="295" textMaxWidth="100" offsetX="73" offsetY="26" text="边线e5e5e5"/>
+    <TextMark defaultDirection="5" direction="5" color="16711680" x="656" y="230" textMaxWidth="100" offsetX="70" offsetY="70" text="2d2d2d&#xD;26"/>
+    <LengthMark direction="12" color="16711680" length="22" x="728" y="232"/>
+  </Marks>
+</MKM>

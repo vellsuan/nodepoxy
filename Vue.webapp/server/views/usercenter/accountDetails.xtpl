@@ -1,0 +1,94 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/accountDetails.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+<header class="mui-bar mui-bar-nav discount-head">
+	<a class="mui-icon mui-icon-arrowleft mui-icon-left-nav mui-pull-left mui-action-back"></a>
+	<h1 class="mui-title font32pt">账户明细</h1>
+</header>
+<div class="mui-content discount">
+	<div id="slider" class="mui-slider">
+		<div id="segmentedControl" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-primary">
+			<a type="1" class="mui-control-item font30pt mui-active" href="#item1mobile">
+				现金账户
+			</a>
+			<a type="2" class="mui-control-item font30pt" href="#item2mobile">
+				盈豆账户
+			</a>
+			<a type="3" class="mui-control-item font30pt" href="#item3mobile">
+				贡献值账户
+			</a>
+		</div>
+		<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>-->
+		<div class="mui-slider-group">
+			<div id="item1mobile" class="mui-slider-item mui-control-content mui-active cash-account">
+				<div class="discount-list">
+					<ul class="mui-table-view datas">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right font28pt" href="#forward">
+								<span class="mui-badge mui-badge-danger font26pt">一周内</span> 时间范围
+							</a>
+						</li>
+					</ul>
+					<ol class="account-item" id="accountScroll"></ol>
+				</div>
+			</div>
+			<div id="item2mobile" class="mui-slider-item mui-control-content bean-account">
+				<div class="discount-list">
+					<ul class="mui-table-view datas">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right font28pt" href="#forward">
+								<span class="mui-badge mui-badge-danger font26pt">一周内</span> 时间范围
+							</a>
+						</li>
+					</ul>
+					<ol class="account-item" id="yingdouScroll"></ol>
+				</div>
+			</div>
+
+			<div id="item3mobile" class="mui-slider-item mui-control-content gongxian-account">
+				<div class="discount-list">
+					<ul class="mui-table-view datas">
+						<li class="mui-table-view-cell">
+							<a class="mui-navigate-right font28pt" href="#forward">
+								<span class="mui-badge mui-badge-danger font26pt">一周内</span> 时间范围
+							</a>
+						</li>
+					</ul>
+					<ol class="account-item" id="gongxianScroll"></ol>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div id="forward" class="mui-popover mui-popover-action mui-popover-bottom" style="display: none;">
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell" time="week">
+			一周内
+		</li>
+		<li class="mui-table-view-cell" time="month">
+			一月内
+		</li>
+		<li class="mui-table-view-cell" time="1">
+			全部
+		</li>
+	</ul>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell">
+			<a href="#forward" class=""><b>取消</b></a>
+		</li>
+	</ul>
+</div>
+
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/accountDetails.js"></script>
+{{/block}}

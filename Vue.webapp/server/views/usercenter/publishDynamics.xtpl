@@ -1,0 +1,58 @@
+{{extend ("../layout")}}
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/interview.css" />
+{{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content interview">
+	<div class="interview-list">
+		<div class="message-item positionr">
+			<span class="positiona"></span>
+			<span class="font28pt">请输入消息</span>
+		</div>
+		<div class="message-textarea positionr">
+			<textarea name="" rows="" cols="" class="font24pt"></textarea>
+			<p class="positiona">
+				还可以输入<span class="word">150</span>字
+			</p>
+		</div>
+		
+		<div class="img-list clearfix">
+			<!--<div class="img-item fleft img-info positionr">
+				<img id="imageviews" src="images/detailBanner.jpg" alt="" />
+			</div>-->
+			<div class="img-item add-btns fleft positionr">
+				<span class="positiona"></span>
+				<span class="positiona"></span>
+				<em id="imageview" style="opacity: 0;"></em>
+				<input class="positiona file" type="file" name="file" id="imguplade" value="" />
+			</div>
+		</div>
+	</div>
+</div>
+<div class="mui-popup-backdrop mui-active" style="display: none;"></div>
+<div class="mui-popup mui-popup-in authen-alert" style="display: none;">
+		<div class="mui-popup-inner">
+			<div class="mui-popup-title font34pt" style="padding-top: 2rem;">确定要删除这张图片吗？</div>
+			<div class="mui-popup-text font28pt"></div>
+		</div>
+		<div class="mui-popup-buttons">
+			<span class="mui-popup-button font32pt red reapplay-btn-collar">取消</span>
+			<span class="mui-popup-button font32pt close-btn-collar">确定</span>
+		</div>
+</div>
+<div class="fotter positionf clearfix">
+	<div class="btns fleft">
+		<a href="javascript:;" class="mui-action-back">
+		<div class="button cancle font30pt">取消</div></a>
+	</div>
+	<div class="btns fleft">
+		<div class="button submit font30pt">提交</div>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/publishDynamics.js"></script>
+{{/block}}

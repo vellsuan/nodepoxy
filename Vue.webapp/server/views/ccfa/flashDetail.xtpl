@@ -1,0 +1,107 @@
+{{extend ("../layout")}}
+
+<!--本页面样式代码-->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/flashSaleDetail.css" /> {{/block}}
+
+<!--本页面结构代码-->
+{{#block ("body")}}
+<div class="mui-content positiona" id="page_ccfa_flashDetail" data-start="{{curTime}}" data-end="{{obj.terminateTime}}">
+	<div class="adver">
+		<a>
+			{{#if(obj['listImgs'].length)}}
+				<img src="{{ServerPath.StaticPath||''}}/images/productDetail.png" data-src="{{ServerPath.ServerImgURL+obj['listImgs'][0].imgUrl}}" />
+			{{else}}
+				<img src="{{ServerPath.StaticPath||''}}/images/productDetail.png"/>
+			{{/if}}
+		</a>
+	</div>
+	<div class="sale-detail clearfix">
+		<h3 class="mui-ellipsis tcenter font28pt">{{obj.productName}}</h3>
+		<p class="tcenter font24pt recommend">{{{obj.productIntro}}}</p>
+		<div class="countdown positionr">
+			{{#if(obj.productStatus==="3")}}
+			<div class="title font24pt positiona tcenter" id="left_title">开奖结果</div>
+			<div class="time-box clearfix" style="padding:0;">
+				<div class="tcenter"><span class="time-num positionCenter">姓名：{{obj.resultEntity&&obj.resultEntity.userName}}</span></div>
+			</div>
+			{{elseif(obj.productStatus==="4")}}
+			<div class="title font24pt positiona tcenter" id="left_title">已结束</div>
+			<div class="time-box clearfix" style="padding:0;">
+				<div class="tcenter"><span class="time-num positionCenter">流标</span></div>
+			</div>
+			{{else}}
+			<div class="title font24pt positiona tcenter" id="left_title">开奖倒计时</div>
+				{{#if(((obj.terminateTime-obj.publishTime)/ 1000 / 60 / 60 / 24)<1)}}
+					<div class="time-box clearfix">
+						<span class="fleft time-num hour_num">00</span>
+						<span class="fleft">:</span>
+						<span class="fleft time-num min_num">00</span>
+						<span class="fleft">:</span>
+						<span class="fleft time-num sec_num">00</span>
+						<span class="fleft">:</span>
+						<span class="fleft time-num mill_num">00</span>
+					</div>
+				{{else}}
+					<div class="time-box clearfix" style="padding:0;">
+						<div class="tcenter"><span class="time-num positionCenter">{{tools.formatTime(obj.terminateTime||'',10)}}开奖</span></div>
+					</div>
+				{{/if}}
+			{{/if}}
+		</div>
+		<ul class="mui-table-view mui-grid-view">
+			<li class="mui-table-view-cell mui-media mui-col-xs-6">
+				<a href="#">
+					<p class="tcenter">
+						<span class="font24pt"></span>
+						<span class="font50pt">{{obj.salesQuantity}}</span>
+						<em class="font24pt">人</em>
+					</p>
+					<div class="mui-media-body">已参加</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-media mui-col-xs-6">
+				<a href="#">
+					<!--<p class="tcenter">
+						<span class="font50pt">{{(obj.maxQuantity-obj.salesQuantity)||"0.00"}}</span>
+						<span class="font24pt">人</span>
+					</p>
+					<div class="mui-media-body tcenter">剩余名额</div>-->
+					<p class="tcenter">
+						<span class="font28pt">抽奖价：</span>
+						<span class="font28pt">￥<em>{{tools.formatCurrency(obj.actualPrice)}}</em></span>
+					</p>
+					<div class="mui-media-body tcenter font24pt"><span>市场价：￥{{tools.formatCurrency(obj.nominalPrice)}}</span></div>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="clearfix project-recommend">
+		<div class="title font30pt">限时抢购项目介绍</div>
+		<div class="clearfix contentImg">
+			<!-- <img src="{{ServerPath.StaticPath||''}}/images/xiangqing.jpg" width="100%" /> -->
+			{{{obj.description}}}
+		</div>
+	</div>
+
+	<div class="footer positionf clearfix">
+		<!--<div class="copies">
+			<div class="fleft font28pt">抢购份数</div>
+			<div class="mui-numbox fright" data-numbox-step='1' projectId="{{obj.id}}" price="{{obj.productPrice}}" sendPrice="{{obj.sendPrice}}" data-numbox-max="{{obj.maxQuantity}}">
+				<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+				<input class="mui-input-numbox" type="number" id="" data-max="{{obj.maxQuantity}}" />
+				<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+			</div>
+		</div>
+		<div class="gobuy">
+			<div class="fleft font26pt">总价：<span class="font34pt">￥</span><span class="font34pt" id="totalMoney"></span></div>
+			<button type="button" class="mui-btn mui-btn-blue fright font32pt">购买</button>
+		</div>-->
+
+		<button type="button" isEnd="{{obj.productStatus!=='2'}}" class="mui-btn mui-btn-myColor {{(obj.whether||obj.productStatus!=='2')?'mui-btn-disColor':''}}">{{obj.whether?"已经参与抽奖":"我要免费参加"}}</button>
+	</div>
+</div>
+{{/block}} {{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/flashDetail.js"></script>
+{{/block}}

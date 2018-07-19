@@ -1,0 +1,181 @@
+{{extend ("../layout")}}
+
+<!----------------本页面样式代码--------------------->
+{{#block ("styles")}}
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/usercenter.css" />
+<link rel="stylesheet" type="text/css" href="{{ServerPath.StaticPath||''}}/styles/iconfont.css" /> {{/block}}
+
+<!----------------本页面结构代码--------------------->
+{{#block ("body")}}
+{{{include ("../util/footer")}}}
+	<!--<header class="mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left font30pt mui-icon-arrowleft"></a>
+				<h1 class="mui-title font32pt">会员中心</h1>
+			</header>-->
+
+	<!--<div class="real-authen-footer positionf">
+				<button type="button" class="mui-btn mui-btn-danger font30pt">退出</button>
+			</div>-->
+
+	<div class="mui-content" id="usercenter_usercenter">
+		<!--顶部内容-->
+		<div class="vip-head">
+			<!--用户昵称和头像-->
+			<dl class="vip-name-head">
+				<dt class="vip-header">
+							<img src="{{ServerPath.StaticPath||''}}/images/photo.png" data-src="{{vipInfo.user.userImg}}"/>
+						</dt>
+				<dd class="vip-name">
+					<span class="positionr grade-box">
+								<span class="grade positiona">
+									<img src="{{ServerPath.StaticPath||''}}/images/grade.png"  data-src="{{ServerPath.ServerImgURL||''}}{{vipInfo.grade.imgUrl}}"/>
+								</span>
+					<span class="font24pt">
+						{{#if(vipInfo.user.isVerifyMember==="1")}}
+							{{vipInfo.user&&vipInfo.user.userName||""}}
+						{{else}}
+							{{vipInfo.user&&vipInfo.user.nickName||""}}
+						{{/if}}
+					</span>
+					</span>
+				</dd>
+			</dl>
+			<!--资金类型及余额-->
+			<div class="account-box clearfix">
+				<dl class="account-item fleft tcenter positionr">
+					<dt class="font32pt"><span class="font18pt">¥</span>{{tools.formatCurrency(vipInfo.user.account&&vipInfo.user.account.cashAmount||'0')}}</dt>
+					<dd class="font24pt">现金账户</dd>
+				</dl>
+				<dl class="account-item fleft tcenter positionr">
+					<dt class="font32pt">{{vipInfo&&vipInfo.userAccInfo.consumeCredits ||'0'}}</dt>
+					<dd class="font24pt">盈豆</dd>
+				</dl>
+				<dl class="account-item fleft tcenter positionr">
+					<dt class="font32pt">{{vipInfo&&vipInfo.user.credits || '0'}}</dt>
+					<dd class="font24pt">贡献值</dd>
+				</dl>
+			</div>
+			<!--操作-->
+			<div class="operate clearfix">
+				<span class="font30pt fleft tcenter recharge">充值</span>
+				<span class="font30pt fright tcenter withdrawals">提现</span>
+			</div>
+		</div>
+		<!--横向导航-->
+		<!--<nav class="mui-bar mui-bar-tab row-nav">-->
+			<nav class="mui-bar uclist row-nav">
+			<a class="mui-tab-item mui-active my-subscription" href="javascript:;">
+				<span class="mui-icon iconfont iconfont icon-xiangmu"></span>
+				<span class="mui-tab-label">我的认购</span>
+			</a>
+			<a class="mui-tab-item my-orders-shop" href="javascript:;">
+				<span class="mui-icon iconfont icon-gouwuche1"></span>
+				<span class="mui-tab-label">我的订单</span>
+			</a>
+			<a class="mui-tab-item my-community" href="javascript:;">
+				<span class="mui-icon iconfont icon-gerenxinxi"></span>
+				<span class="mui-tab-label">我的社群</span>
+			</a>
+			<a id="accountDetails"  class="mui-tab-item" data-href="{{ServerPath.PagePath||" "}}/uc/accountDetails" href="javascript:;">
+				<span class="mui-icon iconfont icon-qianbao"></span>
+				<span class="mui-tab-label">我的账户</span>
+			</a>
+			
+			</nav>
+		<!--</nav>-->
+
+		<div class="vip-list-top vip-list">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="{{ServerPath.PagePath||" "}}/uc/authenIndex">
+						<span class="iconfont icon-jiangpai"></span>
+						<span class="font28pt">个人认证</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="{{ServerPath.PagePath||" "}}/uc/myRaise">
+						<span class="iconfont icon-bao-copy"></span>
+						<span class="font28pt">我的项目</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="{{ServerPath.PagePath||" "}}/uc/collarVote">
+						<span class="iconfont icon-jiangbei"></span>
+						<span class="font28pt">我的领投</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="{{ServerPath.PagePath||" "}}/uc/myPanicBuying">
+						<span class="iconfont icon-shijian"></span>
+						<span class="font28pt">我的抢购</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="vip-list-middle vip-list">
+			<ul class="mui-table-view">
+				<!--<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<span class="iconfont icon-geren"></span>
+						<span class="font28pt">我的好友</span>
+					</a>
+				</li>-->
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" href="{{ServerPath.PagePath||" "}}/uc/myFocus">
+						<span class="iconfont icon-xin"></span>
+						<span class="font28pt">我的关注</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right my-interview" href="javascript:;">
+						<span class="iconfont icon-xinxi2"></span>
+						<span class="font28pt">我的约谈</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="vip-list-bottom vip-list">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a isShop="true" class="mui-navigate-right" href="{{ServerPath.ShopPagePath||" "}}/usercenter/addressBase">
+						<span class="iconfont icon-weizhi_"></span>
+						<span class="font28pt">我的地址</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a isShop="true" class="mui-navigate-right" href="{{ServerPath.ShopPagePath||" "}}/usercenter/coupons">
+						<span class="iconfont icon-youhuiquan1"></span>
+						<span class="font28pt">代金券</span>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					{{#if(vipInfo.user.account)}}
+						<a isShop="true" href="{{ServerPath.ShopPagePath||" "}}/usercenter/modifyPassword" class="mui-navigate-right">
+							<span class="iconfont icon-qia"></span>
+							<span class="font28pt">修改支付密码</span>
+						</a>
+					{{else}}
+						<a isShop="true" href="{{ServerPath.ShopPagePath||" "}}/usercenter/setPassword" class="mui-navigate-right">
+							<span class="iconfont icon-qia"></span>
+							<span class="font28pt">设置支付密码</span>
+						</a>
+					{{/if}}
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right">
+						<span class="iconfont icon-xinfeng"></span>
+						<span class="font28pt">联系我们</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+{{/block}}
+<!----------------js业务代码开发--------------------->
+{{#block ("scripts")}}
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/common.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/layout.js"></script>
+<script type="text/javascript" src="{{ServerPath.StaticPath||''}}/scripts/usercenter.js"></script>
+{{/block}}

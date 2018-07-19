@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" >
+    <title></title>
+    <style>
+
+
+      .teIntry {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex: 1;
+        padding: 0;
+        margin: 0;
+      }
+
+      .teIntry img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .baogao {
+        position: absolute;
+        line-height: 40PX;
+
+        font-size: 18PX;
+        font-weight: 400;
+        color: #fff;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .indexfooter {
+        height: 10000px;
+        background: #f1f1f1;
+      }
+    </style>
+    <link rel="stylesheet" href="/static/reset.css">
+  </head>
+  <!--<script src="static/vconsole.min.js"></script>-->
+  <body>
+  <div id="waiindex">
+    <div class="teIntry">
+      <div class="baogao">我的报告</div>
+      <img id="imgid" src="/static/bgxintwo.png" alt="">
+
+    </div>
+    <div class="indexfooter"></div>
+  </div>
+
+  <div id="app">
+
+
+  </div>
+    <!-- built files will be auto injected -->
+  </body>
+
+  <script>
+    hashChangeFire();
+    if (("onhashchange" in window) && ((typeof document.documentMode === "undefined") || document.documentMode == 8)) {
+      // 浏览器支持onhashchange事件
+      window.onhashchange = hashChangeFire;  // TODO，对应新的hash执行的操作函数
+    } else {
+      // 不支持则用定时器检测的办法
+      setInterval(function () {
+        var ischanged = isHashChanged();  // TODO，检测hash值或其中某一段是否更改的函数
+        if (ischanged) {
+          hashChangeFire();  // TODO，对应新的hash执行的操作函数
+        }
+      }, 150);
+    }
+    function hashChangeFire() {
+      if (window.location.hash == '#/signVerify' || window.location.hash == '#/verifyReturn') {
+
+        document.title = '精彩活动'
+      } else {
+
+        document.title = '体检报告'
+      }
+    }
+  </script>
+
+</html>
